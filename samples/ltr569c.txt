@@ -1,0 +1,47 @@
+Internal Revenue Service
+Letter 569C — Examination of your tax return (correspondence examination)
+
+Date: 05/12/2025
+Tax year: 2023
+
+Taxpayer: SAMPLE PERSON
+Social security number: 123-45-6789
+Return examined: Form 1040 with Schedule C
+
+We are examining your 2023 Form 1040. This letter tells you which items we
+are examining and what records we need from you.
+
+ITEMS UNDER EXAMINATION
+- Schedule C, line 9: Car and truck expenses          $ 8,412.00
+- Schedule C, line 18: Office expense                 $ 2,240.00
+- Schedule C, line 24a: Travel                        $ 3,905.00
+
+RECORDS WE NEED
+- Mileage log showing dates, business purpose, starting and ending odometer
+  readings for each trip claimed in 2023.
+- Receipts or cancelled checks for office expenses over $75.
+- Receipts and itinerary detail for travel, showing the business purpose.
+- Your 2023 Schedule C workpapers and bank statements for the business
+  account (account 5510099887766).
+
+WHAT YOU NEED TO DO
+- Send copies (not originals) of the records listed above within 30 days of
+  the date of this letter, by 06/11/2025.
+- If you need more time, call or write before the due date to request an
+  extension. We may grant up to 30 additional days.
+- If you want to be represented, your representative must file Form 2848,
+  Power of Attorney and Declaration of Representative. A CPA, enrolled agent or
+  attorney may represent you.
+- If you agree with the proposed changes, sign and return Form 4549 or 4549-EZ
+  in the enclosed booklet.
+- If you do not agree after receiving our report, you may request a conference
+  with a manager or appeal to the Independent Office of Appeals using
+  Form 12203.
+
+Do not send payment with your records. If the examination results in a balance
+due, we will send you a separate bill.
+
+Questions? Call the examiner at the number printed on page 1 of the enclosed
+booklet, or 1-800-829-1040 for general help. See irs.gov/exams
+
+Sample document — all data is fictional. Not an actual IRS letter.

@@ -1,0 +1,35 @@
+Department of the Treasury — Internal Revenue Service
+Notice CP14 — Balance Due
+Notice date: 02/10/2025
+Tax year: 2024
+
+Taxpayer: SAMPLE PERSON
+Social security number: 123-45-6789
+
+We processed your 2024 Form 1040 and our records show that you have an unpaid
+balance.
+
+Tax due                                   $  842.00
+Penalty for late payment                  $   63.15
+Interest                                  $   28.44
+Payments applied                          $    0.00
+Total amount you owe: $933.59
+
+Please pay in full by 03/03/2025 to avoid additional penalty and interest.
+
+WHAT YOU NEED TO DO
+- Pay online at irs.gov/payments using IRS Direct Pay (no fee).
+- Or pay by debit or credit card through an approved processor (fee applies).
+- Or mail the payment voucher (Form 1040-V) with a check or money order.
+- If you cannot pay in full, you may be eligible for an Online Payment
+  Agreement at irs.gov/opa, or you can file Form 9465.
+- If you already paid, or you disagree with the amount, call us and have your
+  payment confirmation number ready.
+
+If you do not pay or contact us, we may issue further notices and eventually
+take enforcement action, including a federal tax lien or levy.
+
+Questions? Call 1-800-829-1040, Monday through Friday, 7:00 a.m. to 7:00 p.m.
+local time. More information: irs.gov/noticecp14
+
+Sample document — all data is fictional. Not an actual IRS notice.

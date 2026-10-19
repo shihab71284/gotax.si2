@@ -1,0 +1,22 @@
+2024 Form 1099-K — Payment Card and Third Party Network Transactions
+
+FILER name: QUICKPAY PLATFORM LLC
+FILER TIN: 82-4455661
+
+PAYEE name: SAMPLE PERSON
+PAYEE TIN: 123-45-6789
+
+Account number: QP-88213
+1a Gross payment amount reported to payee .... 14,820.55
+1b Card not present transactions .............  9,110.20
+2 Merchant category code ..................... 5812
+3 Number of payment transactions .............      412
+4 Federal income tax withheld ................      0.00
+5a January ..... 980.40      5b February .... 1,120.75
+5c March ....... 1,240.10    5d April ....... 1,005.00
+5e May ......... 1,310.55    5f June ........ 1,420.30
+5g July ........ 1,388.90    5h August ...... 1,275.44
+5i September ... 1,305.10    5j October ..... 1,290.01
+5k November .... 1,284.00    5l December .... 1,200.00
+
+Sample document — all data is fictional.

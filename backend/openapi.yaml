@@ -1,0 +1,1127 @@
+openapi: 3.0.3
+info:
+  title: GoTax.SI API
+  version: 1.0.0
+  description: |
+    Reference contract for the GoTax.SI backend.
+
+    The delivered front end is a **zero-dependency static site**: `assets/js/app.js`
+    implements an `API` object backed by `localStorage` that maps **1:1** onto the
+    endpoints below (same names, same payload shapes, same status strings). Swapping
+    the mock for this HTTP API means replacing the bodies of `API.*` with `fetch()`
+    calls — no page or component changes are required.
+
+    ### Non-negotiables encoded in this contract
+    * No SSN, ITIN, bank account number or full document text is ever accepted by a
+      logging or analytics endpoint. Uploads are redacted **before** any AI call and
+      the redaction step requires an explicit user confirmation (`redactionConfirmed`).
+    * Every upload records a consent timestamp (`consentAt`). Files are stored in
+      private object storage and are only ever returned as **short-lived signed URLs**.
+    * Nothing is sent to the IRS by this service. Draft letters are returned to the
+      user for review (`draftLetter`), never transmitted.
+    * Bitcoin payments are created by the processor (BTCPay Server). This API stores
+      no private keys and never sees them.
+    * Amounts and deadlines are only ever returned when they were read from the
+      document; a missing field is `null` and the UI renders
+      `decoder.notFound` ("Not found, please check the original notice.").
+  contact:
+    name: GoTax.SI support
+    email: "[SUPPORT_EMAIL — placeholder]"
+  license:
+    name: Proprietary
+
+servers:
+  - url: https://[YOUR_DOMAIN]/api/v1
+    description: Production (HTTPS only — HSTS enabled)
+  - url: http://localhost:8787/api/v1
+    description: Local development
+
+tags:
+  - name: config
+    description: Public runtime configuration and the BTC/USD rate
+  - name: auth
+    description: Email verification, sign-in, roles, optional 2FA
+  - name: documents
+    description: Upload, redaction preview, signed URLs, deletion
+  - name: decode
+    description: OCR → redaction → extraction → bilingual explanation
+  - name: returns
+    description: Guided tax-return intake, checklist, CPA/EA package
+  - name: payments
+    description: BTCPay invoices, webhooks, receipts, refunds
+  - name: reviews
+    description: Human-review queue for low-confidence / high-risk cases
+  - name: admin
+    description: Admin-only lists, reconciliation, audit log
+  - name: contact
+    description: Support messages
+
+security:
+  - bearerAuth: []
+  - cookieSession: []
+
+paths:
+  /config:
+    get:
+      tags: [config]
+      summary: Public runtime configuration
+      description: >
+        Mirrors `API.config()` in `assets/js/app.js`. Values are overridable on the
+        front end with `window.__GOTAX_CONFIG__` for demos.
+      security: []
+      responses:
+        '200':
+          description: Configuration
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Config' }
+
+  /rate:
+    get:
+      tags: [config]
+      summary: Current BTC/USD exchange rate used for pricing
+      description: >
+        Fetched from the payment processor (`btcpay:BTC_USD` by default) and cached
+        for 60 s. Every invoice stores the exact rate it was created with.
+      security: []
+      responses:
+        '200':
+          description: Rate
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [usd, source, at]
+                properties:
+                  usd: { type: number, format: double, example: 118450.00 }
+                  source: { type: string, example: 'btcpay:BTC_USD' }
+                  at: { type: string, format: date-time }
+        '503':
+          description: Rate source unavailable — checkout must fall back to the last cached rate and label it as stale.
+
+  /auth/signin:
+    post:
+      tags: [auth]
+      summary: Sign in (magic link or password + optional TOTP)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, format: password, minLength: 8 }
+                totp: { type: string, pattern: '^[0-9]{6}$', description: Required when the account has 2FA enabled }
+      responses:
+        '200':
+          description: Signed in
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '429': { $ref: '#/components/responses/RateLimited' }
+
+  /auth/verify-email:
+    post:
+      tags: [auth]
+      summary: Confirm an email address
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token]
+              properties:
+                token: { type: string }
+      responses:
+        '204': { description: Verified }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+  /auth/2fa:
+    post:
+      tags: [auth]
+      summary: Enrol or verify a TOTP second factor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action: { type: string, enum: [enrol, verify, disable] }
+                totp: { type: string, pattern: '^[0-9]{6}$' }
+      responses:
+        '200':
+          description: Enrolment secret (otpauth:// URI) or confirmation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  otpauthUrl: { type: string }
+                  enabled: { type: boolean }
+
+  /auth/signout:
+    post:
+      tags: [auth]
+      summary: Sign out and invalidate the session
+      responses:
+        '204': { description: Signed out }
+
+  /me:
+    get:
+      tags: [auth]
+      summary: Current user, role and entitlements
+      responses:
+        '200':
+          description: User
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /documents:
+    get:
+      tags: [documents]
+      summary: List the caller's documents (metadata only — never contents)
+      responses:
+        '200':
+          description: Documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Document' }
+    post:
+      tags: [documents]
+      summary: Request an upload (returns a short-lived signed PUT URL)
+      description: |
+        The file itself is uploaded **directly to object storage** using the signed
+        URL, so document bytes never pass through the API or its logs.
+        Constraints enforced server-side: `jpeg|png|pdf`, max 15 MB, malware scan
+        queued on completion, retention deadline set from `RETENTION_DAYS`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [filename, contentType, sizeBytes, consentAt]
+              properties:
+                filename: { type: string }
+                contentType: { type: string, enum: [image/jpeg, image/png, application/pdf] }
+                sizeBytes: { type: integer, maximum: 15728640 }
+                sha256: { type: string, description: Optional client-side digest for integrity + de-duplication }
+                consentAt:
+                  type: string
+                  format: date-time
+                  description: Timestamp of the explicit "I consent to processing this document" checkbox
+      responses:
+        '201':
+          description: Upload granted
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [documentId, uploadUrl, expiresAt]
+                properties:
+                  documentId: { type: string, example: doc-9f3a }
+                  uploadUrl: { type: string, format: uri, description: Pre-signed PUT URL (private bucket) }
+                  expiresAt: { type: string, format: date-time }
+                  maxBytes: { type: integer, example: 15728640 }
+        '413': { description: File too large (limit 15 MB) }
+        '415': { description: Unsupported file type }
+        '429': { $ref: '#/components/responses/RateLimited' }
+
+  /documents/{id}:
+    parameters: [{ $ref: '#/components/parameters/DocumentId' }]
+    get:
+      tags: [documents]
+      summary: Document metadata + a fresh signed URL (5 min default)
+      description: Every call is written to the audit log (`document.view`).
+      responses:
+        '200':
+          description: Document
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Document'
+                  - type: object
+                    properties:
+                      signedUrl: { type: string, format: uri }
+                      signedUrlExpiresAt: { type: string, format: date-time }
+        '404': { $ref: '#/components/responses/NotFound' }
+    delete:
+      tags: [documents]
+      summary: Delete a document immediately (user-initiated deletion)
+      responses:
+        '204': { description: Deleted, including derived OCR text and explanations }
+
+  /documents/{id}/redaction-preview:
+    post:
+      tags: [decode]
+      summary: OCR + automatic redaction preview (no AI call yet)
+      description: |
+        Runs OCR (deskewed photos, multi-page PDFs) and masks SSN/ITIN, bank account
+        and routing numbers. Returns the **masked** findings only — the API never
+        returns the raw numbers. The user must confirm before `/decode/analyze`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pages: { type: array, items: { type: integer }, description: Subset of PDF pages to process }
+                manualCorrections:
+                  type: array
+                  description: User fixes for OCR errors, applied before redaction
+                  items:
+                    type: object
+                    properties:
+                      from: { type: string }
+                      to: { type: string }
+      responses:
+        '200':
+          description: Redaction preview
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/RedactionResult' }
+        '422': { description: OCR produced no readable text — ask the user to re-upload or paste the text }
+
+  /decode/analyze:
+    post:
+      tags: [decode]
+      summary: Extract fields and build the bilingual explanation
+      description: |
+        Requires `redactionConfirmed: true`. The LLM prompt forbids invented facts and
+        requires every value to quote an OCR field; anything not found is returned as
+        `null` and rendered as "Not found, please check the original notice."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [redactionConfirmed]
+              properties:
+                documentId: { type: string, description: Required unless raw text is pasted }
+                text: { type: string, maxLength: 200000, description: Pasted notice text (already redacted client-side) }
+                locale: { type: string, example: hi, description: Target language for the side-by-side pane }
+                redactionConfirmed: { type: boolean }
+                redactedText: { type: string, description: The confirmed redacted text, echoed for auditability }
+                ocrConfidence: { type: number, minimum: 0, maximum: 1 }
+      responses:
+        '200':
+          description: Analysis + explanation
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Analysis' }
+        '400': { description: Missing `redactionConfirmed` — the request is refused }
+        '429': { $ref: '#/components/responses/RateLimited' }
+
+  /decode/draft-letter:
+    post:
+      tags: [decode]
+      summary: Generate a draft response letter (paid add-on)
+      description: >
+        Returned to the user for review. **Never transmitted to the IRS by this
+        service** — the letter is a draft the customer sends themselves or hands to
+        their preparer.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [analysisId]
+              properties:
+                analysisId: { type: string }
+                position: { type: string, enum: [agree, disagree, need-more-time, payment-plan, other] }
+                taxpayerName: { type: string }
+                notes: { type: string }
+      responses:
+        '200':
+          description: Draft letter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  text: { type: string }
+                  disclaimer: { type: string }
+                  requiresEntitlement: { type: boolean, description: true until the add-on is paid for }
+
+  /decode/{id}/explanation.pdf:
+    get:
+      tags: [decode]
+      summary: Bilingual explanation as a PDF
+      description: >
+        English + the chosen language. The static front end generates this client-side
+        (`assets/js/pdf.js`) and falls back to the browser's Print → Save as PDF for
+        non-Latin scripts, because the bundled writer embeds base-14 Latin fonts only.
+      parameters:
+        - in: query
+          name: locale
+          schema: { type: string, example: bn }
+      responses:
+        '200':
+          description: PDF
+          content:
+            application/pdf:
+              schema: { type: string, format: binary }
+
+  /returns/intake:
+    get:
+      tags: [returns]
+      summary: Load a resumable intake draft
+      responses:
+        '200':
+          description: Intake state
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Intake' }
+    put:
+      tags: [returns]
+      summary: Autosave the intake draft (resumable across sessions)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Intake' }
+      responses:
+        '200': { description: Saved }
+
+  /returns/intake/checklist:
+    post:
+      tags: [returns]
+      summary: Missing-document checklist in the caller's language
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                locale: { type: string, example: zh-CN }
+      responses:
+        '200':
+          description: Checklist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locale: { type: string }
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: string, example: w2-employer }
+                        label: { type: string }
+                        status: { type: string, enum: [missing, uploaded, confirmed] }
+
+  /returns/intake/forms/{documentId}/prefill:
+    post:
+      tags: [returns]
+      summary: OCR prefill for a W-2 / 1099
+      description: >
+        Every value is returned with a confidence score and **requires explicit user
+        confirmation** before it enters the return (`confirmed: true` per field).
+      responses:
+        '200':
+          description: Prefilled fields
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  formType: { type: string, example: W-2 }
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key: { type: string, example: box1 }
+                        label: { type: string }
+                        value: { type: string, nullable: true }
+                        confidence: { type: number }
+                        quote: { type: string }
+                        confirmed: { type: boolean, default: false }
+
+  /returns/package:
+    post:
+      tags: [returns]
+      summary: Submit the intake as a draft package for a licensed CPA/EA
+      description: >
+        Creates the review assignment. The package is a **draft**: a licensed US
+        preparer reviews, signs (with their PTIN) and files. E-signature consents,
+        including the consent to disclose/use tax return information, must be recorded
+        before submission.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [consents]
+              properties:
+                consents:
+                  type: array
+                  items:
+                    type: object
+                    required: [type, at]
+                    properties:
+                      type: { type: string, enum: [disclosure, efile, esign, data-processing] }
+                      at: { type: string, format: date-time }
+                      version: { type: string }
+      responses:
+        '201':
+          description: Package queued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  packageId: { type: string }
+                  status: { type: string, enum: [queued, claimed, in-review, needs-info, ready-to-sign, filed] }
+                  preparer:
+                    type: object
+                    nullable: true
+                    description: Populated once a licensed preparer is assigned
+                    properties:
+                      name: { type: string, example: 'Jordan Lee, CPA' }
+                      credential: { type: string, enum: [CPA, EA] }
+                      ptin: { type: string, example: P01234567 }
+
+  /invoices:
+    post:
+      tags: [payments]
+      summary: Create a payment invoice (BTC primary, card/bank optional)
+      description: >
+        Delegates to the payment processor (self-hosted BTCPay Server or a hosted
+        gateway). The API stores the invoice and the rate snapshot; **it never sees or
+        stores private keys**. On-chain and Lightning are both supported; Lightning
+        invoices carry `bolt11` + `paymentHash` instead of an address.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [serviceId, usd, method]
+              properties:
+                serviceId: { type: string, example: notice-explain }
+                usd: { type: number, format: double, example: 19.00 }
+                method: { type: string, enum: [btc-onchain, btc-lightning, card, bank] }
+                email: { type: string, format: email }
+                name: { type: string }
+                locale: { type: string, example: sw }
+      responses:
+        '201':
+          description: Invoice
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Invoice' }
+        '409': { description: A live invoice already exists for this service + email }
+
+  /invoices/{id}:
+    parameters: [{ $ref: '#/components/parameters/InvoiceId' }]
+    get:
+      tags: [payments]
+      summary: Invoice status (polling target for the checkout page)
+      responses:
+        '200':
+          description: Invoice
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Invoice' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /invoices/{id}/receipt:
+    parameters: [{ $ref: '#/components/parameters/InvoiceId' }]
+    get:
+      tags: [payments]
+      summary: Receipt (JSON or PDF, in English + the customer's language)
+      description: >
+        Contains: receipt number, date/time in UTC, customer name and email, service,
+        USD amount, BTC amount, exchange rate used, txid with explorer link,
+        confirmation count, business name/contact and the refund-policy reference.
+      parameters:
+        - in: query
+          name: format
+          schema: { type: string, enum: [json, pdf], default: json }
+        - in: query
+          name: locale
+          schema: { type: string, example: ar }
+      responses:
+        '200':
+          description: Receipt
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Receipt' }
+            application/pdf:
+              schema: { type: string, format: binary }
+        '404': { description: Not paid yet }
+
+  /webhooks/btcpay:
+    post:
+      tags: [payments]
+      summary: BTCPay Server webhook (payment detected / confirmed / expired)
+      description: |
+        Signature-verified (`BTCPAY_WEBHOOK_SECRET`). Status transitions:
+        `waiting → detected → confirmed`, or `waiting → expired`, plus
+        `underpaid` / `overpaid` with instructions for the customer.
+        Delivery (receipt + entitlement) happens only after the configured number of
+        confirmations (`REQUIRED_CONFIRMATIONS`, default 2).
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: { type: string, example: InvoiceProcessing }
+                afterState: { type: string, example: Confirmed }
+                invoiceId: { type: string }
+                paymentMethod:
+                  type: object
+                  properties:
+                    cryptoCode: { type: string, example: BTC }
+                    paymentLink: { type: string, example: 'lightning:lnbc…' }
+                payments:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      transactionId: { type: string }
+                      confirmations: { type: integer }
+                      value: { type: number, format: double }
+      responses:
+        '200': { description: Acknowledged }
+        '400': { description: Bad signature }
+
+  /refunds:
+    post:
+      tags: [payments]
+      summary: Record a refund (admin)
+      description: Refunds follow `legal/refunds.html`. On-chain refunds are paid from the processor wallet, not from the website.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [invoiceId, reason]
+              properties:
+                invoiceId: { type: string }
+                usd: { type: number, format: double }
+                reason:
+                  type: string
+                  enum: [duplicate-payment, overpayment, service-not-delivered, customer-request, other]
+                note: { type: string }
+      responses:
+        '201':
+          description: Refund recorded
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Refund' }
+
+  /reviews:
+    get:
+      tags: [reviews]
+      summary: Human-review queue (reviewer/admin)
+      parameters:
+        - in: query
+          name: status
+          schema: { type: string, enum: [queued, claimed, done] }
+      responses:
+        '200':
+          description: Queue
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Review' }
+    post:
+      tags: [reviews]
+      summary: Request a human review (customer)
+      description: Triggered automatically for low-confidence results and for high-risk notices (audit, levy, lien, fraud, identity theft).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                analysisId: { type: string }
+                email: { type: string, format: email }
+                note: { type: string }
+                reason: { type: string, enum: [low-confidence, high-risk, customer-request] }
+      responses:
+        '201': { description: Queued }
+
+  /reviews/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema: { type: string }
+    patch:
+      tags: [reviews]
+      summary: Claim / resolve a review item (reviewer/admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: string, enum: [queued, claimed, done] }
+                resolution: { type: string }
+                correctedFields: { type: object, additionalProperties: true }
+      responses:
+        '200': { description: Updated }
+
+  /admin/payments:
+    get:
+      tags: [admin]
+      summary: All payments with statuses (admin)
+      parameters:
+        - { in: query, name: status, schema: { type: string } }
+        - { in: query, name: from, schema: { type: string, format: date } }
+        - { in: query, name: to, schema: { type: string, format: date } }
+        - { in: query, name: q, schema: { type: string }, description: Invoice id, email or txid }
+      responses:
+        '200':
+          description: Payments
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Invoice' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /admin/payments/{id}/reconcile:
+    post:
+      tags: [admin]
+      summary: Manual reconciliation for underpaid / overpaid / stuck invoices
+      parameters: [{ $ref: '#/components/parameters/InvoiceId' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [action]
+              properties:
+                action: { type: string, enum: [mark-confirmed, mark-expired, split-refund, extend-expiry, note] }
+                txid: { type: string }
+                confirmations: { type: integer }
+                note: { type: string }
+      responses:
+        '200': { description: Reconciled }
+
+  /admin/audit:
+    get:
+      tags: [admin]
+      summary: Audit log of file views, status changes and admin actions
+      description: >
+        Log lines never contain SSNs, account numbers or document contents — only
+        identifiers, action names and masked references.
+      parameters:
+        - { in: query, name: action, schema: { type: string } }
+        - { in: query, name: actor, schema: { type: string } }
+        - { in: query, name: limit, schema: { type: integer, default: 200, maximum: 1000 } }
+      responses:
+        '200':
+          description: Audit entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/AuditEntry' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /admin/retention/purge:
+    post:
+      tags: [admin]
+      summary: Run the retention purge (default 90 days, configurable)
+      description: Also runs on a schedule (`RETENTION_CRON`). Deletes files, OCR text, explanations and derived artefacts; audit metadata is kept.
+      responses:
+        '200':
+          description: Purge summary
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted: { type: integer }
+                  olderThan: { type: string, format: date-time }
+
+  /me/data:
+    delete:
+      tags: [documents]
+      summary: Delete all of my data (user-initiated, immediate)
+      responses:
+        '204': { description: Erased }
+
+  /contact:
+    post:
+      tags: [contact]
+      summary: Send a support message
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, message, consent]
+              properties:
+                name: { type: string }
+                email: { type: string, format: email }
+                topic: { type: string, enum: [notice, payment, return, privacy, other] }
+                reference: { type: string, description: Invoice or receipt id }
+                message: { type: string, maxLength: 5000 }
+                urgent: { type: boolean }
+                consent: { type: boolean, description: Must be true — consent to store the message }
+      responses:
+        '201': { description: Received }
+        '429': { $ref: '#/components/responses/RateLimited' }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    cookieSession:
+      type: apiKey
+      in: cookie
+      name: gotax_session
+      description: HttpOnly, Secure, SameSite=Lax
+
+  parameters:
+    DocumentId:
+      in: path
+      name: id
+      required: true
+      schema: { type: string }
+    InvoiceId:
+      in: path
+      name: id
+      required: true
+      schema: { type: string }
+
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Unauthorized:
+      description: Not signed in
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Forbidden:
+      description: Role does not allow this action (RBAC)
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    RateLimited:
+      description: Too many requests (rate limited; default 6 analyses/minute)
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+      headers:
+        Retry-After:
+          schema: { type: integer }
+
+  schemas:
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error: { type: string, example: rate_limited }
+        message: { type: string }
+        retryAfterSeconds: { type: integer }
+
+    Config:
+      type: object
+      properties:
+        apiBase: { type: string, example: /api/v1 }
+        btcRateUsd: { type: number, format: double, example: 118450 }
+        rateSource: { type: string, example: 'btcpay:BTC_USD' }
+        requiredConfirmations: { type: integer, example: 2 }
+        invoiceExpiryMinutes: { type: integer, example: 15 }
+        retentionDays: { type: integer, example: 90 }
+        signedUrlMinutes: { type: integer, example: 5 }
+        maxUploadMb: { type: integer, example: 15 }
+        allowedUploadTypes:
+          type: array
+          items: { type: string }
+          example: [image/jpeg, image/png, application/pdf]
+        rateLimit:
+          type: object
+          properties:
+            max: { type: integer, example: 6 }
+            windowMs: { type: integer, example: 60000 }
+        explorerBase: { type: string, example: 'https://mempool.space/tx/' }
+        business:
+          type: object
+          description: Placeholders to be filled in by the operator
+          properties:
+            legalName: { type: string, example: '[COMPANY LEGAL NAME — placeholder]' }
+            address: { type: string, example: '[BUSINESS ADDRESS — placeholder]' }
+            email: { type: string, example: '[SUPPORT EMAIL — placeholder]' }
+            phone: { type: string, example: '[SUPPORT PHONE — placeholder]' }
+            taxId: { type: string, example: '[EIN — placeholder]' }
+            partnerFirm: { type: string, example: '[LICENSED CPA/EA FIRM — placeholder]' }
+
+    User:
+      type: object
+      properties:
+        id: { type: string }
+        email: { type: string, format: email }
+        name: { type: string }
+        role: { type: string, enum: [customer, reviewer, admin] }
+        emailVerified: { type: boolean }
+        twoFactor: { type: boolean }
+        ptin: { type: string, description: Only for reviewer role }
+        locale: { type: string }
+        createdAt: { type: string, format: date-time }
+
+    Document:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        kind: { type: string, enum: [image, pdf, pasted] }
+        pages: { type: integer }
+        sizeBytes: { type: integer }
+        sizeLabel: { type: string }
+        status: { type: string, enum: [uploaded, scanned, redacted, analyzed, explained, deleted] }
+        scan: { type: string, enum: [pending, clean, infected] }
+        noticeCode: { type: string, nullable: true }
+        redacted: { type: integer, description: How many sensitive numbers were masked }
+        consentAt: { type: string, format: date-time }
+        createdAt: { type: string, format: date-time }
+        deleteAt: { type: string, format: date-time, description: Retention deadline }
+        notes:
+          type: array
+          items: { type: string }
+          example: ['skew corrected', 'page 2 rotated']
+
+    RedactionFinding:
+      type: object
+      properties:
+        key: { type: string, enum: [ssn, itin, bank, longacct, ein, phone] }
+        labelKey: { type: string, example: decoder.redactSsn }
+        masked: { type: string, example: XXX-XX-6789 }
+        preview: { type: string, example: '****6789' }
+        line: { type: integer }
+      description: The raw number is never returned to the client or written to logs.
+
+    RedactionResult:
+      type: object
+      properties:
+        clean: { type: string, description: Fully masked text, safe to send to the model }
+        findings:
+          type: array
+          items: { $ref: '#/components/schemas/RedactionFinding' }
+        count: { type: integer }
+        ocrConfidence: { type: number, minimum: 0, maximum: 1 }
+        pages: { type: integer }
+
+    ExtractedField:
+      type: object
+      properties:
+        key:
+          type: string
+          enum: [type, year, date, owed, refund, deadline, changed, actions, contact]
+        value:
+          nullable: true
+          description: '`null` when not found — the UI renders "Not found, please check the original notice."'
+          oneOf:
+            - { type: string }
+            - { type: number }
+            - { type: array, items: { type: string } }
+        quote: { type: string, description: The OCR text this value was read from }
+        confidence: { type: number, minimum: 0, maximum: 1 }
+        method: { type: string, enum: [pattern, keyword, llm, none] }
+
+    Analysis:
+      type: object
+      properties:
+        id: { type: string }
+        noticeCode: { type: string, nullable: true, example: CP2000 }
+        title: { type: string }
+        risk: { type: string, enum: [low, medium, high, unknown] }
+        risks:
+          type: array
+          items:
+            type: object
+            properties:
+              tag: { type: string, enum: [audit, levy, lien, fraud, identity-theft, criminal, collection] }
+              quote: { type: string }
+        fields:
+          type: array
+          items: { $ref: '#/components/schemas/ExtractedField' }
+        confidence:
+          type: object
+          properties:
+            ocr: { type: number }
+            classification: { type: number }
+            coverage: { type: number }
+            overall: { type: number }
+        level: { type: string, enum: [high, medium, low] }
+        needsHumanReview: { type: boolean }
+        explanation:
+          type: object
+          properties:
+            en: { $ref: '#/components/schemas/ExplanationPane' }
+            localized: { $ref: '#/components/schemas/ExplanationPane' }
+            locale: { type: string }
+            fallback: { type: boolean, description: true when no translation exists for this locale/notice }
+            machineTranslated: { type: boolean }
+
+    ExplanationPane:
+      type: object
+      description: The seven required sections, in order
+      properties:
+        sections:
+          type: object
+          properties:
+            sec1: { $ref: '#/components/schemas/Section' }
+            sec2: { $ref: '#/components/schemas/Section' }
+            sec3: { $ref: '#/components/schemas/Section' }
+            sec4: { $ref: '#/components/schemas/Section' }
+            sec5: { $ref: '#/components/schemas/Section' }
+            sec6: { $ref: '#/components/schemas/Section' }
+            sec7: { $ref: '#/components/schemas/Section' }
+        translated: { type: boolean }
+        source: { type: string, example: CP2000 }
+
+    Section:
+      type: object
+      properties:
+        p: { type: array, items: { type: string } }
+        b: { type: array, items: { type: string } }
+
+    Intake:
+      type: object
+      properties:
+        step: { type: integer, minimum: 1, maximum: 6 }
+        filingStatus: { type: string, enum: [single, married-joint, married-separate, hoh, qss] }
+        incomeTypes: { type: array, items: { type: string }, example: [w2, 1099-nec, 1099-k, self-employment, foreign] }
+        deductions: { type: array, items: { type: string } }
+        dependents:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              relationship: { type: string }
+              ssnMasked: { type: string, example: XXX-XX-1234 }
+        state: { type: string, example: CA }
+        priorYearDocumentId: { type: string, nullable: true }
+        savedAt: { type: string, format: date-time }
+
+    Invoice:
+      type: object
+      properties:
+        id: { type: string, example: INV-3f9c2a }
+        createdAt: { type: string, format: date-time }
+        expiresAt: { type: string, format: date-time }
+        serviceId: { type: string }
+        serviceLabel: { type: string }
+        usd: { type: number, format: double }
+        btc: { type: number, format: double }
+        rate: { type: number, format: double, description: USD per BTC locked at creation }
+        method: { type: string, enum: [btc-onchain, btc-lightning, card, bank] }
+        status:
+          type: string
+          enum: [waiting, detected, underpaid, overpaid, confirmed, expired, refunded]
+        address: { type: string, description: On-chain deposit address (never a private key) }
+        bolt11: { type: string }
+        paymentHash: { type: string }
+        uri: { type: string, description: 'bitcoin:… or lightning:… QR payload' }
+        txid: { type: string }
+        explorerUrl: { type: string }
+        confirmations: { type: integer }
+        requiredConfirmations: { type: integer }
+        paidUsd: { type: number, format: double }
+        email: { type: string, format: email }
+        name: { type: string }
+        locale: { type: string }
+
+    Receipt:
+      type: object
+      properties:
+        id: { type: string, example: RCT-77ab12 }
+        number: { type: string, description: Human-facing receipt number }
+        invoiceId: { type: string }
+        at: { type: string, format: date-time, description: UTC }
+        name: { type: string }
+        email: { type: string, format: email }
+        serviceId: { type: string }
+        serviceLabel: { type: string }
+        usd: { type: number, format: double }
+        btc: { type: number, format: double }
+        rate: { type: number, format: double }
+        method: { type: string }
+        txid: { type: string }
+        explorerUrl: { type: string }
+        confirmations: { type: integer }
+        locale: { type: string }
+        business: { type: object, description: Business name + contact placeholders }
+        refundPolicyRef: { type: string, example: legal/refunds.html }
+        emailed: { type: boolean }
+
+    Refund:
+      type: object
+      properties:
+        id: { type: string }
+        invoiceId: { type: string }
+        usd: { type: number, format: double }
+        reason: { type: string }
+        note: { type: string }
+        at: { type: string, format: date-time }
+        by: { type: string }
+
+    Review:
+      type: object
+      properties:
+        id: { type: string }
+        analysisId: { type: string }
+        noticeCode: { type: string }
+        reason: { type: string, enum: [low-confidence, high-risk, customer-request] }
+        status: { type: string, enum: [queued, claimed, done] }
+        email: { type: string, format: email }
+        note: { type: string }
+        claimedBy: { type: string, nullable: true }
+        createdAt: { type: string, format: date-time }
+
+    AuditEntry:
+      type: object
+      properties:
+        at: { type: string, format: date-time }
+        actor: { type: string, description: User id or `anonymous` }
+        action: { type: string, example: document.view }
+        target: { type: string, example: doc-9f3a }
+        detail: { type: string, description: Masked context only — never document contents }
+        ip: { type: string, description: Optional; hashed in privacy-preserving deployments }

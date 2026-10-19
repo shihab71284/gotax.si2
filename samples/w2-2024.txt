@@ -1,0 +1,25 @@
+Copy B — For Employee's Federal Income Tax Return
+2024 Wage and Tax Statement (Form W-2)
+
+a  Employee's social security number: 123-45-6789
+b  EIN: 88-1234567
+c  Employer's name: NORTHBRIDGE LOGISTICS LLC
+   Address: 900 Harbor Blvd, Suite 400, Oakland, CA 94607
+
+e  Employee's name: SAMPLE PERSON
+f  Address: 4821 Example Ave, Apt 3B, Springfield, IL 62704
+
+1  Wages, tips, other compensation ............... 48,210.00
+2  Federal income tax withheld ...................  5,142.77
+3  Social security wages ......................... 48,210.00
+4  Social security tax withheld ..................  2,989.02
+5  Medicare wages and tips ....................... 48,210.00
+6  Medicare tax withheld .........................    699.05
+12a Code DD (cost of employer-sponsored coverage) ..  4,180.00
+13 Retirement plan: X   Third-party sick pay: [ ]
+14 Other: CA SDI 112.44
+15 State: CA   Employer state ID: 1234567
+16 State wages ............ 48,210.00
+17 State income tax .......  2,014.00
+
+Sample document — all data is fictional.

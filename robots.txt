@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /account.html
+Disallow: /admin.html
+Disallow: /checkout.html
+Disallow: /receipts.html
+
+Sitemap: https://gotax.si/sitemap.xml

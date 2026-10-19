@@ -1,0 +1,331 @@
+{
+  "updatedAt": "2026-10-17",
+  "note": "Sample corpus. Amounts, dates and identifiers are fictional. Reference translations ship for CP2000 (hi, bn, zh-CN, es, ar); other notices render English plus a localised summary, and the production system machine-translates every section at run time.",
+  "notices": [
+    {
+      "code": "CP2000",
+      "aliases": ["CP-2000", "Underreported Income", "AUR notice"],
+      "title": "Proposed change to your tax return (underreported income)",
+      "risk": "medium",
+      "riskTags": [],
+      "typicalDeadline": "30 days from the notice date",
+      "sampleFile": "samples/cp2000.txt",
+      "summary": {
+        "en": "The IRS received income documents that do not match what you reported, and is proposing additional tax.",
+        "es": "El IRS recibió documentos de ingresos que no coinciden con lo que declaraste y propone un impuesto adicional.",
+        "hi": "IRS को आय दस्तावेज़ मिले जो आपकी घोषित आय से मेल नहीं खाते, और वह अतिरिक्त कर प्रस्तावित कर रहा है।",
+        "bn": "IRS আয়ের এমন নথি পেয়েছে যা আপনার রিপোর্টের সঙ্গে মেলে না, এবং অতিরিক্ত কর প্রস্তাব করছে।",
+        "ar": "تلقت IRS مستندات دخل لا تطابق ما أقررت به، وتقترح ضريبة إضافية.",
+        "zh-CN": "IRS 收到的收入文件与您申报的不一致，因此提议追加税款。",
+        "zh-TW": "IRS 收到的所得文件與您申報的不一致，因此提議追加稅款。",
+        "fr": "L’IRS a reçu des documents de revenus qui ne correspondent pas à votre déclaration et propose un impôt supplémentaire.",
+        "de": "Die IRS hat Einkommensbelege erhalten, die nicht zu Ihrer Erklärung passen, und schlägt zusätzliche Steuer vor.",
+        "ko": "IRS가 받은 소득 서류가 신고 내용과 일치하지 않아 추가 세금을 제안합니다.",
+        "tl": "Nakatanggap ang IRS ng mga dokumento ng kita na hindi tumutugma sa iyong ulat, at nagmumungkahi ng karagdagang buwis.",
+        "sw": "IRS imepokea nyaraka za mapato ambazo hazilingani na ulichoripoti, na inapendekeza kodi ya ziada."
+      },
+      "sections": {
+        "en": {
+          "sec1": { "p": ["A CP2000 is a proposed-change notice from the IRS Automated Underreporter (AUR) unit. It is not a bill and not an audit. It means information returns the IRS received (for example Form 1099-B from a broker, 1099-NEC from a client, or W-2 from an employer) do not match the income you reported on your return for this tax year."], "b": ["The notice lists what the IRS received, what you reported, and the difference.", "It proposes additional tax plus interest, and sometimes a penalty."] },
+          "sec2": { "p": ["The IRS is asking you to review the proposed change and respond by the deadline printed on the notice."], "b": ["Agree with all or part of the change and sign the response form.", "Or disagree and explain why, with documents that support your position.", "If you owe and cannot pay in full, say so in your response — payment options are still available."] },
+          "sec3": { "p": ["The response deadline is normally 30 days from the notice date. The exact date printed on your notice controls."], "b": ["If you do not respond, the IRS will issue a statutory notice of deficiency (Letter 3219-B), which starts a 90-day window to petition the US Tax Court.", "After that window closes, the amount can be assessed and collection can begin, including levy or lien.", "Interest keeps accruing while you wait, and late-payment penalties may be added."] },
+          "sec4": { "p": ["You generally have four paths."], "b": ["AGREE — sign and return the response form; pay the amount or set up a payment plan.", "PARTIALLY AGREE — return the form with the parts you accept and documents for the parts you do not.", "DISAGREE — send a written statement plus supporting documents (broker statements, invoices, proof of basis, Form 8949 detail).", "REQUEST MORE TIME — call the number on the notice or send a written extension request before the deadline."] },
+          "sec5": { "p": ["Gather whatever matches the discrepancy described in your notice:"], "b": ["Your filed return for the tax year in the notice, including all schedules and Form 8949.", "The information documents the IRS lists (1099-B, 1099-NEC, 1099-K, W-2).", "Broker or platform statements showing sales, cost basis and wash-sale adjustments.", "Invoices, receipts or bank statements proving income was already reported or was not taxable.", "Proof of any tax already withheld or paid on that income."] },
+          "sec6": { "p": ["A practical order of work:"], "b": ["1. Check the notice date and deadline, and put the deadline in your calendar today.", "2. Compare each income line in the notice against your filed return.", "3. Identify whether the difference is a real omission, a duplicate 1099, a nominee/backup-withholding issue, or a basis error.", "4. Decide agree / partially agree / disagree, and prepare the documents that support it.", "5. Send your response before the deadline using the method the notice specifies, and keep proof of mailing.", "6. If the amount is large or the facts are complex, have a licensed CPA/EA review your response first."] },
+          "sec7": { "b": ["Is the income in this notice something I already reported, or a document issued in my name by mistake?", "What is the cost basis of the securities listed, and does the IRS have the corrected basis?", "Is any part of this a nominee 1099, a family transfer, or a non-taxable event?", "Should I file Form 8949 / Schedule D corrections instead of just replying to the notice?", "Can the accuracy-related penalty be abated, and on what grounds (reasonable cause)?", "If I agree, can I set up an instalment agreement, and what will it cost?", "Do I need to amend a state return as a result?"] }
+        },
+        "hi": {
+          "sec1": { "p": ["CP2000 IRS की ऑटोमेटेड अंडररिपोर्टर (AUR) इकाई की ओर से प्रस्तावित परिवर्तन का नोटिस है। यह न बिल है, न ऑडिट। इसका अर्थ है कि IRS को मिले आय दस्तावेज़ (जैसे ब्रोकर का 1099-B, क्लाइंट का 1099-NEC, या नियोक्ता का W-2) इस कर वर्ष में आपके रिटर्न में दर्शायी गई आय से मेल नहीं खाते।"], "b": ["नोटिस में बताया गया है कि IRS को क्या मिला, आपने क्या दर्शाया, और अंतर कितना है।", "इसमें अतिरिक्त कर plus ब्याज, और कभी-कभी जुर्माना प्रस्तावित किया जाता है।"] },
+          "sec2": { "p": ["IRS आपसे प्रस्तावित परिवर्तन की समीक्षा कर, नोटिस पर छपी समय-सीमा तक उत्तर देने को कह रहा है।"], "b": ["पूरे या आंशिक परिवर्तन से सहमत हों और प्रतिक्रिया फ़ॉर्म पर हस्ताक्षर करें।", "या असहमत हों और अपने पक्ष के दस्तावेज़ों के साथ कारण बताएँ।", "यदि देय है और पूरा भुगतान नहीं कर सकते, तो उत्तर में ऐसा लिखें — भुगतान के विकल्प फिर भी उपलब्ध हैं।"] },
+          "sec3": { "p": ["उत्तर की समय-सीमा सामान्यतः नोटिस तिथि से 30 दिन होती है। आपके नोटिस पर छपी तारीख़ ही मान्य होगी।"], "b": ["उत्तर न देने पर IRS वैधानिक नोटिस (Letter 3219-B) जारी करेगा, जिससे US Tax Court में याचिका के लिए 90 दिन का समय शुरू होता है।", "वह समय समाप्त होने पर राशि निर्धारित की जा सकती है और वसूली शुरू हो सकती है, जिसमें लेवी या लियन शामिल है।", "इंतज़ार के दौरान ब्याज बढ़ता रहता है और विलंब-भुगतान जुर्माना भी लग सकता है।"] },
+          "sec4": { "p": ["आम तौर पर चार रास्ते हैं।"], "b": ["सहमत हों — प्रतिक्रिया फ़ॉर्म पर हस्ताक्षर कर भेजें; राशि चुकाएँ या भुगतान योजना बनाएँ।", "आंशिक सहमति — स्वीकार्य हिस्से के साथ फ़ॉर्म भेजें और बाकी के लिए दस्तावेज़ लगाएँ।", "असहमत हों — लिखित कथन और समर्थन दस्तावेज़ भेजें (ब्रोकर स्टेटमेंट, इनवॉइस, बेसिस प्रूफ़, Form 8949 विवरण)।", "अधिक समय माँगें — नोटिस पर दिए नंबर पर कॉल करें या समय-सीमा से पहले लिखित विस्तार अनुरोध भेजें।"] },
+          "sec5": { "p": ["अपने नोटिस में बताए गए अंतर से मेल खाते दस्तावेज़ इकट्ठा करें:"], "b": ["उस कर वर्ष का दायर रिटर्न, सभी शेड्यूल और Form 8949 सहित।", "IRS द्वारा सूचीबद्ध आय दस्तावेज़ (1099-B, 1099-NEC, 1099-K, W-2)।", "ब्रोकर या प्लेटफ़ॉर्म स्टेटमेंट जिनमें बिक्री, लागत आधार और वॉश-सेल समायोजन दिखें।", "इनवॉइस, रसीदें या बैंक स्टेटमेंट जो सिद्ध करें कि आय पहले ही दर्शायी गई थी या करयोग्य नहीं थी।", "उस आय पर पहले से कटे या भुगतान किए गए कर का प्रमाण।"] },
+          "sec6": { "p": ["काम का व्यावहारिक क्रम:"], "b": ["1. नोटिस की तिथि और समय-सीमा देखें, और समय-सीमा आज ही कैलेंडर में दर्ज करें।", "2. नोटिस की हर आय पंक्ति की तुलना अपने दायर रिटर्न से करें।", "3. पहचानें कि अंतर वास्तविक चूक है, डुप्लिकेट 1099 है, नॉमिनी/बैकअप विदहोल्डिंग मामला है, या बेसिस त्रुटि।", "4. तय करें — सहमत / आंशिक सहमत / असहमत — और उसके समर्थन में दस्तावेज़ तैयार करें।", "5. नोटिस में बताए गए तरीक़े से समय-सीमा से पहले उत्तर भेजें और भेजने का प्रमाण रखें।", "6. राशि बड़ी हो या तथ्य जटिल हों, तो पहले किसी लाइसेंस प्राप्त CPA/EA से उत्तर की समीक्षा कराएँ।"] },
+          "sec7": { "b": ["क्या यह आय मैं पहले ही दर्शा चुका हूँ, या यह दस्तावेज़ ग़लती से मेरे नाम जारी हुआ है?", "सूचीबद्ध प्रतिभूतियों का लागत आधार क्या है, और क्या IRS के पास सही आधार है?", "क्या इसका कोई हिस्सा नॉमिनी 1099, पारिवारिक हस्तांतरण, या ग़ैर-करयोग्य घटना है?", "क्या मुझे उत्तर देने के बजाय Form 8949 / Schedule D में सुधार करना चाहिए?", "क्या शुद्धता-संबंधी जुर्माना माफ़ हो सकता है, और किस आधार (उचित कारण) पर?", "यदि सहमत हूँ, तो किस्त समझौता हो सकता है और उसकी लागत क्या होगी?", "क्या इसके चलते राज्य का रिटर्न भी संशोधित करना होगा?"] }
+        },
+        "bn": {
+          "sec1": { "p": ["CP2000 হলো IRS-এর Automated Underreporter (AUR) ইউনিটের প্রস্তাবিত পরিবর্তনের নোটিশ। এটি বিল নয়, অডিটও নয়। এর অর্থ, IRS যেসব আয়ের নথি পেয়েছে (যেমন ব্রোকারের 1099-B, ক্লায়েন্টের 1099-NEC, বা নিয়োগকারীর W-2) তা এই করবছরে আপনার রিটার্নে দেখানো আয়ের সঙ্গে মিলছে না।"], "b": ["নোটিশে দেখানো আছে IRS কী পেয়েছে, আপনি কী দেখিয়েছেন এবং পার্থক্য কত।", "এতে অতিরিক্ত কর ও সুদ, কখনো কখনো জরিমানা প্রস্তাব করা হয়।"] },
+          "sec2": { "p": ["IRS আপনাকে প্রস্তাবিত পরিবর্তন পর্যালোচনা করে নোটিশে ছাপা সময়সীমার মধ্যে উত্তর দিতে বলছে।"], "b": ["পুরো বা আংশিক পরিবর্তনে সম্মত হন এবং প্রতিক্রিয়া ফর্মে স্বাক্ষর করুন।", "অথবা দ্বিমত পোষণ করুন এবং সমর্থনকারী ডকুমেন্টসহ কারণ ব্যাখ্যা করুন।", "প্রদেয় হলে এবং পুরো টাকা দিতে না পারলে উত্তরে তা লিখুন — পরিশোধের বিকল্প এখনো আছে।"] },
+          "sec3": { "p": ["উত্তরের সময়সীমা সাধারণত নোটিশের তারিখ থেকে ৩০ দিন। আপনার নোটিশে ছাপা তারিখই চূড়ান্ত।"], "b": ["উত্তর না দিলে IRS বৈধ নোটিশ (Letter 3219-B) জারি করবে, যা US Tax Court-এ আবেদনের ৯০ দিনের সময় শুরু করে।", "সেই সময় শেষ হলে অর্থ নির্ধারিত হতে পারে এবং আদায় শুরু হতে পারে, যার মধ্যে লেভি বা লিয়েন আছে।", "অপেক্ষার সময় সুদ বাড়তে থাকে এবং বিলম্ব-পরিশোধ জরিমানা যোগ হতে পারে।"] },
+          "sec4": { "p": ["সাধারণত চারটি পথ আছে।"], "b": ["সম্মত হন — ফর্মে স্বাক্ষর করে পাঠান; অর্থ পরিশোধ করুন বা পরিশোধ পরিকল্পনা করুন।", "আংশিক সম্মত — যে অংশ মেনে নেন তা ফর্মে দিন, বাকি অংশের ডকুমেন্ট সংযুক্ত করুন।", "দ্বিমত — লিখিত বিবৃতি ও সমর্থনকারী ডকুমেন্ট পাঠান (ব্রোকার স্টেটমেন্ট, ইনভয়েস, বেসিস প্রমাণ, Form 8949 বিবরণ)।", "আরও সময় চান — নোটিশের নম্বরে কল করুন বা সময়সীমার আগে লিখিত সময় বাড়ানোর আবেদন পাঠান।"] },
+          "sec5": { "p": ["আপনার নোটিশে বর্ণিত পার্থক্যের সঙ্গে মেলে এমন ডকুমেন্ট জোগাড় করুন:"], "b": ["সেই করবছরের দাখিল করা রিটার্ন, সব শিডিউল ও Form 8949 সহ।", "IRS যেসব আয়ের নথি উল্লেখ করেছে (1099-B, 1099-NEC, 1099-K, W-2)।", "ব্রোকার বা প্ল্যাটফর্ম স্টেটমেন্ট, যেখানে বিক্রয়, কস্ট বেসিস ও ওয়াশ-সেল সমন্বয় আছে।", "ইনভয়েস, রসিদ বা ব্যাংক স্টেটমেন্ট যা প্রমাণ করে আয় আগেই দেখানো হয়েছিল বা করযোগ্য ছিল না।", "সেই আয়ের ওপর আগে থেকে কাটা বা পরিশোধিত করের প্রমাণ।"] },
+          "sec6": { "p": ["কাজের ব্যবহারিক ক্রম:"], "b": ["১. নোটিশের তারিখ ও সময়সীমা দেখুন এবং আজই ক্যালেন্ডারে সময়সীমা যুক্ত করুন।", "২. নোটিশের প্রতিটি আয়ের লাইন আপনার দাখিল করা রিটার্নের সঙ্গে মিলিয়ে দেখুন।", "৩. বুঝুন পার্থক্যটি আসল বাদ পড়া, নকল 1099, নমিনি/ব্যাকআপ উইথহোল্ডিং, নাকি বেসিস ভুল।", "৪. সিদ্ধান্ত নিন — সম্মত / আংশিক সম্মত / দ্বিমত — এবং সমর্থনকারী ডকুমেন্ট প্রস্তুত করুন।", "৫. নোটিশে বলা পদ্ধতিতে সময়সীমার আগে উত্তর পাঠান এবং পাঠানোর প্রমাণ রাখুন।", "৬. অর্থ বড় বা তথ্য জটিল হলে আগে একজন লাইসেন্সপ্রাপ্ত CPA/EA দিয়ে উত্তর পর্যালোচনা করান।"] },
+          "sec7": { "b": ["এই আয় কি আমি আগেই দেখিয়েছি, নাকি নথিটি ভুলে আমার নামে ইস্যু হয়েছে?", "উল্লিখিত সিকিউরিটির কস্ট বেসিস কত এবং IRS-এর কাছে কি সঠিক বেসিস আছে?", "এর কোনো অংশ কি নমিনি 1099, পারিবারিক হস্তান্তর বা অকরযোগ্য ঘটনা?", "উত্তর দেওয়ার বদলে কি Form 8949 / Schedule D সংশোধন করা উচিত?", "নির্ভুলতা-সংক্রান্ত জরিমানা কি মওকুফ হতে পারে, কোন যুক্তিতে (reasonable cause)?", "সম্মত হলে কিস্তি চুক্তি সম্ভব কি এবং খরচ কত পড়বে?", "এর ফলে কি অঙ্গরাজ্যের রিটার্নও সংশোধন করতে হবে?"] }
+        },
+        "zh-CN": {
+          "sec1": { "p": ["CP2000 是 IRS 自动少报收入部门（AUR）发出的拟调整通知。它不是账单，也不是稽查。它的含义是：IRS 收到的收入凭证（例如券商的 1099-B、客户的 1099-NEC 或雇主的 W-2）与该税年您申报的收入不一致。"], "b": ["通知会列出 IRS 收到的金额、您申报的金额以及差额。", "它会拟追加税款加利息，有时还包含罚款。"] },
+          "sec2": { "p": ["IRS 要求您核对这项拟调整，并在通知上印制的截止日期前回复。"], "b": ["同意全部或部分调整，并在回复表上签字。", "或不同意，说明理由并附上支持您立场的文件。", "如果确实欠缴但无法一次付清，请在回复中说明——仍可申请付款安排。"] },
+          "sec3": { "p": ["回复期限通常为通知日期起 30 天，以通知上印制的日期为准。"], "b": ["如果不回复，IRS 会发出法定欠税通知（Letter 3219-B），开启 90 天向美国税务法院申诉的窗口。", "该窗口关闭后，税款可能被核定并开始催收，包括强制扣押或留置权。", "等待期间利息持续累积，还可能加收滞纳罚款。"] },
+          "sec4": { "p": ["通常有四条路径。"], "b": ["同意 — 签署并寄回回复表；缴款或申请分期计划。", "部分同意 — 寄回表格，注明接受的部分，并为不接受的部分附上文件。", "不同意 — 提交书面说明及支持文件（券商对账单、发票、成本基础证明、8949 表明细）。", "申请延期 — 拨打通知上的电话，或在截止日前提交书面延期申请。"] },
+          "sec5": { "p": ["按通知中所述差异准备相应文件："], "b": ["该税年已申报的报税表，含所有附表和 8949 表。", "IRS 列出的收入凭证（1099-B、1099-NEC、1099-K、W-2）。", "显示卖出、成本基础和洗售调整的券商或平台对账单。", "能证明收入已申报或不应税的发票、收据或银行流水。", "该收入已预扣或已缴税款的证明。"] },
+          "sec6": { "p": ["建议的处理顺序："], "b": ["1. 核对通知日期与截止日期，今天就把截止日期写进日历。", "2. 将通知中的每一项收入与已申报的报税表逐项比对。", "3. 判断差额是真实遗漏、重复 1099、代名/预扣问题，还是成本基础错误。", "4. 决定同意／部分同意／不同意，并准备支持文件。", "5. 按通知指定的方式在截止日前寄出回复，并保留寄送凭证。", "6. 金额较大或事实复杂时，先请持证 CPA/EA 审阅您的回复。"] },
+          "sec7": { "b": ["这笔收入我是否已经申报，或该凭证是否被错误地开在我名下？", "所列证券的成本基础是多少，IRS 是否掌握修正后的基础？", "其中是否包含代名 1099、家庭内部转移或应税事件以外的情况？", "是否应更正 8949 表 / Schedule D，而不仅是回复通知？", "准确性相关罚款能否减免，依据是什么（合理理由）？", "如果我同意，能否申请分期协议，成本是多少？", "是否因此需要修正州税申报表？"] }
+        },
+        "es": {
+          "sec1": { "p": ["El CP2000 es un aviso de cambio propuesto de la unidad Automated Underreporter (AUR) del IRS. No es una factura ni una auditoría. Significa que los documentos de ingresos que el IRS recibió (por ejemplo un 1099-B de un bróker, un 1099-NEC de un cliente o un W-2 de un empleador) no coinciden con los ingresos que declaraste en ese año fiscal."], "b": ["El aviso detalla qué recibió el IRS, qué declaraste y la diferencia.", "Propone impuesto adicional más intereses y, a veces, una multa."] },
+          "sec2": { "p": ["El IRS te pide que revises el cambio propuesto y respondas antes de la fecha límite impresa en el aviso."], "b": ["Aceptar total o parcialmente el cambio y firmar el formulario de respuesta.", "O no estar de acuerdo y explicar por qué, con documentos que respalden tu posición.", "Si debes y no puedes pagar todo, indícalo en tu respuesta: siguen existiendo opciones de pago."] },
+          "sec3": { "p": ["El plazo de respuesta suele ser de 30 días desde la fecha del aviso. La fecha impresa en tu aviso es la que vale."], "b": ["Si no respondes, el IRS emitirá un aviso estatutario de deficiencia (Letter 3219-B), que abre 90 días para acudir al Tribunal Fiscal de EE. UU.", "Cerrado ese plazo, el importe puede liquidarse y empezar la cobranza, incluido embargo o gravamen.", "Los intereses siguen acumulándose y pueden añadirse multas por pago tardío."] },
+          "sec4": { "p": ["En general hay cuatro caminos."], "b": ["ACEPTAR: firma y devuelve el formulario; paga o solicita un plan de pagos.", "ACEPTAR EN PARTE: devuelve el formulario con lo que aceptas y documentos para lo que no.", "NO ACEPTAR: envía una declaración escrita con documentos de apoyo (estados de cuenta del bróker, facturas, prueba de base, detalle del Formulario 8949).", "PEDIR MÁS TIEMPO: llama al número del aviso o envía una solicitud escrita de prórroga antes del plazo."] },
+          "sec5": { "p": ["Reúne lo que corresponda a la discrepancia descrita en tu aviso:"], "b": ["Tu declaración presentada de ese año fiscal, con todos los anexos y el Formulario 8949.", "Los documentos de ingresos que el IRS enumera (1099-B, 1099-NEC, 1099-K, W-2).", "Estados de cuenta del bróker o plataforma con ventas, base de costo y ajustes por wash sale.", "Facturas, recibos o estados bancarios que prueben que el ingreso ya se declaró o no era imponible.", "Prueba de cualquier impuesto ya retenido o pagado sobre ese ingreso."] },
+          "sec6": { "p": ["Un orden práctico de trabajo:"], "b": ["1. Revisa la fecha del aviso y el plazo, y anótalo hoy en tu calendario.", "2. Compara cada línea de ingreso del aviso con tu declaración presentada.", "3. Identifica si la diferencia es una omisión real, un 1099 duplicado, un tema de 1099 nominado/retención o un error de base.", "4. Decide aceptar / aceptar en parte / no aceptar y prepara los documentos que lo respalden.", "5. Envía tu respuesta antes del plazo por el medio que indica el aviso y guarda el comprobante.", "6. Si el importe es alto o los hechos son complejos, haz que un CPA/EA licenciado revise tu respuesta primero."] },
+          "sec7": { "b": ["¿Este ingreso ya lo declaré, o el documento se emitió a mi nombre por error?", "¿Cuál es la base de costo de los valores listados y el IRS tiene la base corregida?", "¿Alguna parte es un 1099 nominado, una transferencia familiar o un hecho no imponible?", "¿Debería corregir el Formulario 8949 / Schedule D en lugar de solo responder al aviso?", "¿Puede anularse la multa por exactitud y con qué fundamento (causa razonable)?", "Si acepto, ¿puedo obtener un acuerdo de pagos a plazos y cuánto costaría?", "¿Necesito corregir también la declaración estatal?"] }
+        },
+        "ar": {
+          "sec1": { "p": ["إشعار CP2000 هو إشعار تغيير مقترح من وحدة الإبلاغ الناقص الآلي (AUR) لدى IRS. ليس فاتورة وليس تدقيقًا. يعني أن مستندات الدخل التي تلقتها IRS (مثل 1099-B من وسيط، أو 1099-NEC من عميل، أو W-2 من صاحب عمل) لا تطابق الدخل الذي أقررت به في تلك السنة الضريبية."], "b": ["يوضّح الإشعار ما استلمته IRS وما أقررت به والفرق بينهما.", "يقترح ضريبة إضافية مع فائدة، وأحيانًا غرامة."] },
+          "sec2": { "p": ["تطلب IRS مراجعة التغيير المقترح والرد قبل الموعد النهائي المطبوع على الإشعار."], "b": ["الموافقة على التغيير كليًا أو جزئيًا وتوقيع نموذج الرد.", "أو الاعتراض وشرح السبب مع مستندات تدعم موقفك.", "إذا كان هناك مبلغ مستحق ولا تستطيع سداده كاملًا، اذكر ذلك في ردك — خيارات السداد ما زالت متاحة."] },
+          "sec3": { "p": ["عادةً تكون مهلة الرد 30 يومًا من تاريخ الإشعار. والتاريخ المطبوع على إشعارك هو المعتمد."], "b": ["إن لم ترد، ستصدر IRS إشعار نقص قانونيًا (Letter 3219-B) يبدأ مهلة 90 يومًا للطعن أمام المحكمة الضريبية الأمريكية.", "بعد انتهاء المهلة يمكن احتساب المبلغ وبدء التحصيل، بما في ذلك الحجز أو الرهن الضريبي.", "تستمر الفائدة بالتراكم وقد تُضاف غرامات تأخير."] },
+          "sec4": { "p": ["لديك عمومًا أربعة مسارات."], "b": ["الموافقة: وقّع وأعد النموذج، وادفع المبلغ أو رتّب خطة سداد.", "الموافقة الجزئية: أعد النموذج بما تقبله وأرفق مستندات لما ترفضه.", "الاعتراض: أرسل بيانًا مكتوبًا مع مستندات داعمة (كشوف الوسيط، فواتير، إثبات الأساس، تفاصيل النموذج 8949).", "طلب مهلة إضافية: اتصل بالرقم في الإشعار أو أرسل طلب تمديد مكتوبًا قبل الموعد النهائي."] },
+          "sec5": { "p": ["اجمع ما يطابق الفرق الموصوف في إشعارك:"], "b": ["إقرارك المقدَّم لتلك السنة الضريبية بكل جداوله والنموذج 8949.", "مستندات الدخل التي تدرجها IRS (1099-B، 1099-NEC، 1099-K، W-2).", "كشوف الوسيط أو المنصة التي تُظهر المبيعات وأساس التكلفة وتسويات wash sale.", "فواتير أو إيصالات أو كشوف مصرفية تثبت أن الدخل أُقرّ سابقًا أو أنه غير خاضع للضريبة.", "إثبات أي ضريبة خُصمت أو دُفعت على ذلك الدخل."] },
+          "sec6": { "p": ["ترتيب عملي للعمل:"], "b": ["1. تحقق من تاريخ الإشعار والمهلة، وسجّل المهلة في تقويمك اليوم.", "2. قارن كل بند دخل في الإشعار مع إقرارك المقدَّم.", "3. حدد ما إذا كان الفرق سهوًا حقيقيًا أو 1099 مكررًا أو مسألة 1099 بالنيابة/حجز احتياطي أو خطأ في الأساس.", "4. قرّر الموافقة / الموافقة الجزئية / الاعتراض وجهّز المستندات الداعمة.", "5. أرسل ردك قبل الموعد النهائي بالطريقة التي يحددها الإشعار، واحتفظ بإثبات الإرسال.", "6. إذا كان المبلغ كبيرًا أو الوقائع معقدة، اعرض ردك أولًا على CPA/EA مرخّص."] },
+          "sec7": { "b": ["هل هذا الدخل أقررت به سابقًا، أم صدر المستند باسمي بالخطأ؟", "ما أساس تكلفة الأوراق المالية المدرجة، وهل لدى IRS الأساس المصحح؟", "هل أي جزء منه 1099 بالنيابة أو تحويل عائلي أو حدث غير خاضع للضريبة؟", "هل يجب تصحيح النموذج 8949 / Schedule D بدل الاكتفاء بالرد على الإشعار؟", "هل يمكن إلغاء غرامة الدقة، وعلى أي أساس (سبب معقول)؟", "إن وافقت، هل يمكن ترتيب خطة تقسيط وما تكلفتها؟", "هل أحتاج إلى تعديل إقرار الولاية نتيجة لذلك؟"] }
+        }
+      },
+      "related": ["CP14", "CP501", "LTR3219C"]
+    },
+    {
+      "code": "CP14",
+      "aliases": ["CP-14", "Balance Due", "Notice of balance due"],
+      "title": "Balance due — you owe tax",
+      "risk": "medium",
+      "riskTags": [],
+      "typicalDeadline": "21 days from the notice date (30 days if you owe less than $100,000 and the notice is addressed outside the US)",
+      "sampleFile": "samples/cp14.txt",
+      "summary": {
+        "en": "The IRS calculated that you still owe tax, penalties and interest for this tax year.",
+        "es": "El IRS calculó que todavía debes impuestos, multas e intereses de este año fiscal.",
+        "hi": "IRS ने गणना की है कि इस कर वर्ष के लिए आप पर अभी भी कर, जुर्माना और ब्याज बकाया है।",
+        "bn": "IRS হিসাব করেছে যে এই করবছরের জন্য আপনার কর, জরিমানা ও সুদ এখনো বাকি।",
+        "ar": "حسبت IRS أن عليك ضريبة وغرامات وفوائد متبقية عن هذه السنة الضريبية.",
+        "zh-CN": "IRS 计算后认为您该税年仍欠缴税款、罚款和利息。",
+        "zh-TW": "IRS 計算後認為您該稅年度仍欠繳稅款、罰款與利息。",
+        "fr": "L’IRS a calculé que vous devez encore impôt, pénalités et intérêts pour cette année fiscale.",
+        "de": "Die IRS hat berechnet, dass Sie für dieses Steuerjahr noch Steuern, Säumniszuschläge und Zinsen schulden.",
+        "ko": "IRS 계산 결과 해당 과세연도의 세금, 가산금, 이자가 남아 있습니다.",
+        "tl": "Kinalkula ng IRS na may natitira ka pang buwis, multa at interes para sa tax year na ito.",
+        "sw": "IRS imehesabu kuwa bado unadaiwa kodi, adhabu na riba kwa mwaka huu wa kodi."
+      },
+      "sections": {
+        "en": {
+          "sec1": { "p": ["A CP14 is a balance-due notice. It means the IRS processed your return, applied your payments and withholding, and shows a remaining balance of tax, penalty and interest."], "b": ["It is a bill, not an audit and not a proposed change.", "It usually arrives weeks after you filed, and it lists the amounts line by line."] },
+          "sec2": { "p": ["The IRS wants the full balance paid by the date shown on the notice."], "b": ["Pay online (Direct Pay), by card through a processor, or by check with the voucher.", "If you cannot pay in full, still file a response or set up an instalment agreement — ignoring it makes the problem worse."] },
+          "sec3": { "p": ["The deadline is normally 21 days from the notice date (or 30 days for smaller balances). The date on your notice controls."], "b": ["After the deadline, the failure-to-pay penalty and interest continue to accrue.", "Unpaid balances can move to collection: CP501 reminder, CP504 intent to levy, then a final notice with your right to a hearing."] },
+          "sec4": { "b": ["PAY IN FULL — by the due date to stop further penalties and interest.", "SET UP A PAYMENT PLAN — an Online Payment Agreement (streamlined for balances within the limits) or Form 9465.", "DISPUTE THE BALANCE — if you already paid or the math is wrong, send proof of payment and a written explanation.", "REQUEST PENALTY ABATEMENT — first-time penalty abatement or reasonable cause, in writing, after the balance is resolved."] },
+          "sec5": { "b": ["Your filed return and the payment/withholding records (W-2 box 2, 1099 withholding, Form 1040-ES vouchers).", "Bank or card statements proving payment, confirmation numbers, IRS account transcript.", "The CP14 itself, plus any earlier notices for the same tax year."] },
+          "sec6": { "b": ["1. Verify the balance on your IRS online account — it may already reflect a payment in transit.", "2. Check the penalty and interest lines: they are calculated, so an error usually means the underlying tax figure is wrong.", "3. Pay what you can before the deadline, then request an instalment agreement for the rest.", "4. Keep the confirmation number for every payment.", "5. If you believe the balance is wrong, respond in writing with proof before the deadline."] },
+          "sec7": { "b": ["Does my IRS account transcript match this notice?", "Am I eligible for first-time penalty abatement?", "Which payment plan fits my cash flow, and what is the user fee?", "Is part of this balance from a prior year or a state offset?", "Could an offer in compromise or currently-not-collectible status apply?"] }
+        }
+      },
+      "related": ["CP501", "CP504", "CP2000"]
+    },
+    {
+      "code": "CP11",
+      "aliases": ["CP-11", "Refund adjustment"],
+      "title": "We changed your return — refund adjustment",
+      "risk": "low",
+      "riskTags": [],
+      "typicalDeadline": "No response needed unless you disagree (60-day dispute window is common)",
+      "sampleFile": "samples/cp11.txt",
+      "summary": {
+        "en": "The IRS made a change to your return and the result affects your refund amount.",
+        "es": "El IRS hizo un cambio en tu declaración y el resultado afecta tu reembolso.",
+        "hi": "IRS ने आपके रिटर्न में परिवर्तन किया और उसका असर आपकी रिफ़ंड राशि पर पड़ा है।",
+        "bn": "IRS আপনার রিটার্নে পরিবর্তন করেছে এবং এর ফল আপনার রিফান্ডের পরিমাণে পড়েছে।",
+        "ar": "أجرت IRS تغييرًا على إقرارك والنتيجة تؤثر على مبلغ الاسترداد.",
+        "zh-CN": "IRS 对您的申报表作了调整，结果影响您的退税金额。",
+        "zh-TW": "IRS 對您的申報表作了調整，結果影響您的退稅金額。",
+        "fr": "L’IRS a modifié votre déclaration et le résultat affecte votre remboursement.",
+        "de": "Die IRS hat Ihre Erklärung geändert; das Ergebnis betrifft Ihre Erstattung.",
+        "ko": "IRS가 신고서를 변경했으며 그 결과가 환급액에 영향을 줍니다.",
+        "tl": "Binago ng IRS ang iyong return at ang resulta ay nakakaapekto sa iyong refund.",
+        "sw": "IRS ilifanya mabadiliko kwenye fomu yako na matokeo yanaathiri kiasi cha marejesho."
+      },
+      "sections": {
+        "en": {
+          "sec1": { "p": ["A CP11 tells you the IRS adjusted something on your return — often math, a credit, or an offset — and shows the new refund amount."], "b": ["Common causes: math-error correction, a credit disallowed, or a refund offset to another debt."] },
+          "sec2": { "p": ["Usually nothing is required from you if you agree. If you disagree, you must respond within the window shown on the notice (often 60 days)."], "b": ["Call the number on the notice, or write to the address shown, explaining why the adjustment is wrong."] },
+          "sec3": { "p": ["There is generally no payment deadline, but the dispute window is limited."], "b": ["Missing the dispute window usually means the adjustment stands.", "If the refund was offset, the notice names the agency that received it."] },
+          "sec4": { "b": ["AGREE — no action needed; keep the notice with your tax records.", "DISAGREE — respond in writing within the window with documents that support your position.", "OFFSET — if a state or federal debt took the refund, contact that agency; the IRS cannot reverse it."] },
+          "sec5": { "b": ["Your filed return, the refund transcript, and any offset notice (TOP).", "Documents supporting the credit or figure the IRS changed."] },
+          "sec6": { "b": ["1. Compare the IRS adjustment with your filed return line by line.", "2. Check whether it is a math error, a disallowed credit, or an offset.", "3. If it is an offset, confirm which agency and amount.", "4. Respond before the dispute window closes if you disagree."] },
+          "sec7": { "b": ["Which line of my return changed and why?", "Is this a math-error adjustment, and can I still dispute it under that procedure?", "Was my refund offset, and to which agency?"] }
+        }
+      },
+      "related": ["CP12", "CP14"]
+    },
+    {
+      "code": "CP501",
+      "aliases": ["CP-501", "Reminder notice", "Balance due reminder"],
+      "title": "Reminder — you have an unpaid balance",
+      "risk": "medium",
+      "riskTags": [],
+      "typicalDeadline": "21 days from the notice date",
+      "sampleFile": "samples/cp501.txt",
+      "summary": {
+        "en": "A reminder that a balance from an earlier notice is still unpaid.",
+        "es": "Un recordatorio de que un saldo de un aviso anterior sigue sin pagarse.",
+        "hi": "याद दिलाया गया है कि पिछले नोटिस का बकाया अब भी अदत्त है।",
+        "bn": "স্মারক যে আগের নোটিশের ব্যালেন্স এখনো অপরিশোধিত।",
+        "ar": "تذكير بأن رصيدًا من إشعار سابق ما زال غير مسدد.",
+        "zh-CN": "提醒：之前通知的欠款仍未缴纳。",
+        "zh-TW": "提醒：之前通知的欠款仍未繳納。",
+        "fr": "Un rappel qu’un solde d’un avis précédent reste impayé.",
+        "de": "Eine Erinnerung, dass ein Saldo aus einem früheren Bescheid noch offen ist.",
+        "ko": "이전 통지의 미납 잔액이 남아 있다는 독촉입니다.",
+        "tl": "Paalala na may hindi pa nababayadang balanse mula sa naunang notice.",
+        "sw": "Kikumbusho kuwa bado kuna salio kutoka taarifa ya awali."
+      },
+      "sections": {
+        "en": {
+          "sec1": { "p": ["A CP501 is a reminder notice. The balance from an earlier notice (usually CP14) has not been paid, so penalties and interest have grown."], "b": ["This is part of the IRS collection sequence: CP14 → CP501 → CP504 → Letter 3219C (final notice)."] },
+          "sec2": { "p": ["Pay the balance or arrange a payment plan by the date on the notice."], "b": ["If you already paid, send proof of payment and the confirmation number."] },
+          "sec3": { "p": ["Typically 21 days from the notice date."], "b": ["If ignored, the next notice (CP504) announces intent to levy your state refund or other assets."] },
+          "sec4": { "b": ["PAY IN FULL — stops additional penalty and interest accrual.", "PAYMENT PLAN — online payment agreement or Form 9465.", "DISPUTE — send proof of payment or a written explanation if the balance is wrong.", "HARDSHIP — if paying would prevent you from meeting basic living expenses, ask about currently-not-collectible status."] },
+          "sec5": { "b": ["Your account transcript, proof of any payments, the earlier CP14, and bank statements."] },
+          "sec6": { "b": ["1. Pull your IRS account transcript and confirm the balance and tax year.", "2. Check whether a payment is already posted.", "3. Pay or set up a plan before the deadline.", "4. If you cannot pay, request an instalment agreement in writing — do not ignore the notice."] },
+          "sec7": { "b": ["Is the balance current, including all payments I made?", "Am I still eligible for first-time penalty abatement?", "What is the smallest monthly payment the IRS will accept?"] }
+        }
+      },
+      "related": ["CP14", "CP504", "LTR3219C"]
+    },
+    {
+      "code": "CP504",
+      "aliases": ["CP-504", "Notice of intent to levy"],
+      "title": "Notice of intent to levy — high risk",
+      "risk": "high",
+      "riskTags": ["levy"],
+      "typicalDeadline": "30 days from the notice date — this starts your Collection Due Process rights",
+      "sampleFile": "samples/cp504.txt",
+      "summary": {
+        "en": "The IRS intends to levy (seize) your state tax refund or other assets unless you act.",
+        "es": "El IRS intends embargar tu devolución estatal u otros bienes si no actúas.",
+        "hi": "IRS आपका राज्य कर रिफ़ंड या अन्य संपत्ति जब्त (लेवी) करने वाला है यदि आपने कार्रवाई नहीं की।",
+        "bn": "আপনি পদক্ষেপ না নিলে IRS আপনার অঙ্গরাজ্য কর রিফান্ড বা অন্য সম্পত্তি বাজেয়াপ্ত (লেভি) করবে।",
+        "ar": "تنوي IRS الحجز على استرداد ضريبتك الحكومية أو أصول أخرى ما لم تتصرف.",
+        "zh-CN": "除非您采取行动，IRS 打算扣押（强制征收）您的州退税或其他资产。",
+        "zh-TW": "除非您採取行動，IRS 打算扣押（強制徵收）您的州退稅或其他資產。",
+        "fr": "L’IRS compte saisir votre remboursement d’État ou d’autres actifs si vous n’agissez pas.",
+        "de": "Die IRS beabsichtigt, Ihre Staats­erstattung oder anderes Vermögen zu pfänden, wenn Sie nicht handeln.",
+        "ko": "조치하지 않으면 IRS가 주 환급금이나 기타 자산을 압류할 예정입니다.",
+        "tl": "Nagbabalak ang IRS na agawin (levy) ang iyong state refund o ibang ari-arian kung hindi ka kikilos.",
+        "sw": "IRS inakusudia kuteka (levy) marejesho yako ya kodi ya jimbo au mali nyingine usipochukua hatua."
+      },
+      "sections": {
+        "en": {
+          "sec1": { "p": ["A CP504 is a notice of intent to levy. The IRS warns that it may seize your state income tax refund and may take other enforcement action if the balance is not paid."], "b": ["Levy means the IRS can take money from wages, bank accounts or other assets.", "This notice is part of the escalation before a final notice with hearing rights."] },
+          "sec2": { "p": ["Pay the balance in full, or contact the IRS immediately to arrange a payment plan or dispute the debt."], "b": ["Do not ignore it: enforcement can begin after the deadline."] },
+          "sec3": { "p": ["Usually 30 days from the notice date."], "b": ["Missing it can result in levy of your state refund and, later, a final notice (Letter 3219C) that gives you 30 days to request a Collection Due Process hearing."] },
+          "sec4": { "b": ["PAY IN FULL — the fastest way to stop enforcement.", "PAYMENT PLAN — request an instalment agreement; a pending request generally pauses levy.", "DISPUTE — if the debt is not yours or was already paid, send proof immediately.", "HARDSHIP — request currently-not-collectible status if levy would cause immediate hardship.", "APPEAL — request a Collection Due Process hearing using Form 12153 when you receive the final notice."] },
+          "sec5": { "b": ["Account transcript, proof of payments, the earlier notices, and evidence of hardship (rent, medical, utilities) if relevant."] },
+          "sec6": { "b": ["1. Contact a licensed professional today — levy notices are time-critical.", "2. Verify the balance and tax year on your account transcript.", "3. Pay or submit a payment-plan request in writing before the deadline.", "4. Keep records of every call: date, time, IRS employee ID and what was agreed."] },
+          "sec7": { "b": ["Which assets are actually at risk right now?", "Will a payment-plan request stop the levy?", "Do I qualify for currently-not-collectible status or an offer in compromise?", "What are my Collection Due Process rights and deadlines?"] }
+        }
+      },
+      "related": ["CP501", "LTR3219C"]
+    },
+    {
+      "code": "LTR3219C",
+      "aliases": ["3219C", "Letter 3219-C", "Final notice of intent to levy", "LT11"],
+      "title": "Final notice — intent to levy and notice of your right to a hearing",
+      "risk": "high",
+      "riskTags": ["levy", "collection"],
+      "typicalDeadline": "30 days from the notice date — strictly enforced",
+      "sampleFile": "samples/ltr3219c.txt",
+      "summary": {
+        "en": "Final notice before enforced collection. You have 30 days to request a hearing.",
+        "es": "Aviso final antes del cobro forzoso. Tienes 30 días para solicitar una audiencia.",
+        "hi": "जब्त वसूली से पहले अंतिम नोटिस। सुनवाई का अनुरोध करने के लिए आपके पास 30 दिन हैं।",
+        "bn": "জোরপূর্বক আদায়ের আগে শেষ নোটিশ। শুনানির আবেদনের জন্য আপনার ৩০ দিন আছে।",
+        "ar": "الإشعار الأخير قبل التحصيل الجبري. لديك 30 يومًا لطلب جلسة استماع.",
+        "zh-CN": "强制征收前的最后通知。您有 30 天时间申请听证。",
+        "zh-TW": "強制徵收前的最後通知。您有 30 天時間申請聽證。",
+        "fr": "Dernier avis avant recouvrement forcé. Vous avez 30 jours pour demander une audience.",
+        "de": "Letzte Mahnung vor der Zwangsvollstreckung. Sie haben 30 Tage, um eine Anhörung zu beantragen.",
+        "ko": "강제 징수 전 마지막 통지입니다. 청문회를 요청할 수 있는 기간은 30일입니다.",
+        "tl": "Huling notice bago ang sapilitang pangongolekta. May 30 araw ka para humiling ng hearing.",
+        "sw": "Taarifa ya mwisho kabla ya ukusanyaji wa lazima. Una siku 30 kuomba kusikilizwa."
+      },
+      "sections": {
+        "en": {
+          "sec1": { "p": ["Letter 3219C (also sent as LT11) is the IRS final notice of intent to levy and your notice of right to a Collection Due Process (CDP) hearing."], "b": ["After this, the IRS can levy wages, bank accounts, federal payments and other property.", "It can also file a Notice of Federal Tax Lien."] },
+          "sec2": { "p": ["Either pay in full / arrange a resolution, or request a CDP hearing within 30 days using Form 12153."], "b": ["A timely CDP request generally stops levy while the appeal is pending.", "You can raise payment options, penalties, spousal relief or disputes about the debt in the hearing."] },
+          "sec3": { "p": ["30 days from the notice date. The deadline is strict."], "b": ["If you miss it, you lose CDP rights and only get an equivalent hearing without appeal rights to Tax Court."] },
+          "sec4": { "b": ["PAY OR RESOLVE — full payment, instalment agreement, offer in compromise, or currently-not-collectible status.", "REQUEST A CDP HEARING — Form 12153 within 30 days.", "TAXPAYER ADVOCATE — contact the Taxpayer Advocate Service if you face hardship.", "INNOCENT SPOUSE / INJURED SPOUSE — Form 8857 or Form 8379 where applicable."] },
+          "sec5": { "b": ["The notice itself, your account transcript, financial statements (Form 433-F), proof of income and necessary living expenses."] },
+          "sec6": { "b": ["1. Treat this as urgent and get licensed help immediately.", "2. Decide between paying, a payment plan, or a CDP hearing — and file Form 12153 within 30 days if you want appeal rights.", "3. Send by certified mail with return receipt.", "4. Keep copies of everything you send."] },
+          "sec7": { "b": ["Should I request a CDP hearing to preserve appeal rights even while negotiating?", "What financial disclosure will the IRS require?", "Is an offer in compromise realistic in my situation?", "Can a lien be withdrawn or the filing delayed?"] }
+        }
+      },
+      "related": ["CP504", "CP501"]
+    },
+    {
+      "code": "LTR5071C",
+      "aliases": ["5071C", "Letter 5071C", "CP01B", "identity verification"],
+      "title": "Identity verification required before your refund is released",
+      "risk": "high",
+      "riskTags": ["fraud"],
+      "typicalDeadline": "As printed on the letter — refunds stay frozen until you verify",
+      "sampleFile": "samples/ltr5071c.txt",
+      "summary": {
+        "en": "The IRS needs you to verify your identity before it can process your return or release your refund.",
+        "es": "El IRS necesita que verifiques tu identidad antes de procesar tu declaración o liberar tu reembolso.",
+        "hi": "आपका रिटर्न प्रोसेस करने या रिफ़ंड जारी करने से पहले IRS को आपकी पहचान सत्यापित करनी है।",
+        "bn": "আপনার রিটার্ন প্রক্রিয়া বা রিফান্ড ছাড়ের আগে IRS-এর আপনার পরিচয় যাচাই দরকার।",
+        "ar": "تحتاج IRS إلى التحقق من هويتك قبل معالجة إقرارك أو صرف الاسترداد.",
+        "zh-CN": "IRS 需要您验证身份，之后才能处理您的申报表或发放退税。",
+        "zh-TW": "IRS 需要您驗證身分，之後才能處理您的申報表或發放退稅。",
+        "fr": "L’IRS doit vérifier votre identité avant de traiter votre déclaration ou de libérer votre remboursement.",
+        "de": "Die IRS muss Ihre Identität bestätigen, bevor sie Ihre Erklärung verarbeitet oder die Erstattung freigibt.",
+        "ko": "IRS는 신고서를 처리하거나 환급을 지급하기 전에 본인 확인이 필요합니다.",
+        "tl": "Kailangang beripikahin ng IRS ang iyong pagkakakilanlan bago proseso ang return o ilabas ang refund.",
+        "sw": "IRS inahitaji kuthibitisha utambulisho wako kabla ya kuchakata fomu yako au kutoa marejesho."
+      },
+      "sections": {
+        "en": {
+          "sec1": { "p": ["A 5071C (or similar letter such as CP01B / 5747C) means the IRS flagged your return for potential identity theft and needs you to confirm that you filed it."], "b": ["Until you verify, the refund is frozen.", "If you did NOT file the return, treat this as confirmed identity theft and report it immediately."] },
+          "sec2": { "p": ["Complete identity verification using the method the letter specifies — online at the IRS ID Verify site or by phone at the number in the letter."], "b": ["You will need your filing, a personal account (credit card in your name, phone, email), and identity documents such as a driver's licence or passport.", "Never verify through a link in an unsolicited email or text — go directly to irs.gov."] },
+          "sec3": { "p": ["The letter states a deadline; if you miss it your return is not processed and the refund is delayed further."], "b": ["Verification usually takes a few minutes; refunds are typically released within 6–9 weeks after verification."] },
+          "sec4": { "b": ["I FILED IT — verify identity online or by phone.", "I DID NOT FILE IT — report identity theft: Form 14039, identitytheft.gov, and consider freezing your credit.", "NO ONLINE ACCESS — call the number in the letter or visit a Taxpayer Assistance Center by appointment."] },
+          "sec5": { "b": ["Government photo ID, your filed return, and any prior-year refund or account information the IRS asks for."] },
+          "sec6": { "b": ["1. Verify through irs.gov or the phone number printed in the letter only.", "2. Keep the confirmation number.", "3. If you did not file the return, submit Form 14039 and place fraud alerts with the credit bureaus.", "4. Monitor your IRS online account for changes."] },
+          "sec7": { "b": ["Did someone else file a return using my SSN/ITIN?", "Should I file Form 14039 and an identity-theft PIN (IP PIN) request?", "How long will my refund be delayed after verification?", "Should I freeze my credit files?"] }
+        }
+      },
+      "related": ["CP01B", "CP14"]
+    },
+    {
+      "code": "LTR569C",
+      "aliases": ["569C", "Letter 569C", "CP2501", "examination"],
+      "title": "Examination (audit) — we want to review your return",
+      "risk": "high",
+      "riskTags": ["audit"],
+      "typicalDeadline": "As printed — often 30 days to respond or to agree to an extension",
+      "sampleFile": "samples/ltr569c.txt",
+      "summary": {
+        "en": "The IRS opened an examination (audit) of your return and is requesting records.",
+        "es": "El IRS abrió un examen (auditoría) de tu declaración y solicita registros.",
+        "hi": "IRS ने आपके रिटर्न की परीक्षा (ऑडिट) शुरू की है और रिकॉर्ड माँग रहा है।",
+        "bn": "IRS আপনার রিটার্নের পরীক্ষা (অডিট) শুরু করেছে এবং রেকর্ড চাইছে।",
+        "ar": "فتحت IRS فحصًا (تدقيقًا) لإقرارك وتطلب السجلات.",
+        "zh-CN": "IRS 已对您的申报表启动检查（稽查），并要求提供记录。",
+        "zh-TW": "IRS 已對您的申報表啟動檢查（稽核），並要求提供紀錄。",
+        "fr": "L’IRS a ouvert un examen (vérification) de votre déclaration et demande des pièces.",
+        "de": "Die IRS hat eine Prüfung Ihrer Erklärung eröffnet und fordert Unterlagen an.",
+        "ko": "IRS가 신고서에 대한 조사(감사)를 시작하고 자료를 요청했습니다.",
+        "tl": "Nagbukas ang IRS ng examination (audit) ng iyong return at humihingi ng mga rekord.",
+        "sw": "IRS imefungua ukaguzi (audit) wa fomu yako na inaomba rekodi."
+      },
+      "sections": {
+        "en": {
+          "sec1": { "p": ["An examination letter (such as 569C or CP2501) opens an IRS audit. It lists the items under review — for example Schedule C expenses, a credit, or unreported income — and the records requested."], "b": ["Audits can be correspondence, office, or field examinations.", "You have the right to representation by a CPA, EA or attorney."] },
+          "sec2": { "p": ["Send only what is requested, organised by item, by the response date. Do not volunteer unrelated records."], "b": ["If you need more time, request an extension in writing before the deadline.", "If you agree with the proposed changes, sign the agreement form; if not, you can appeal."] },
+          "sec3": { "p": ["The response date is printed in the letter, commonly 30 days."], "b": ["No response can lead to a statutory notice of deficiency and assessment of the full proposed amount.", "You then have 90 days to petition the Tax Court."] },
+          "sec4": { "b": ["RESPOND WITH RECORDS — organised, indexed, copies only.", "REQUEST AN EXTENSION — in writing, before the deadline.", "AGREE — sign the examination report and arrange payment.", "DISAGREE — request a conference with a manager or appeal to the Independent Office of Appeals (Form 12203).", "GET REPRESENTATION — a CPA/EA or tax attorney can act for you with Form 2848."] },
+          "sec5": { "b": ["The filed return and workpapers, books and records for the items examined, receipts, bank statements, invoices, mileage logs, and prior correspondence with the IRS."] },
+          "sec6": { "b": ["1. Engage a licensed professional before responding — audit responses set the record for any appeal.", "2. Read exactly which items and which tax year are under examination.", "3. Assemble records for those items only, and make copies.", "4. Send by trackable mail or upload through the channel the letter specifies.", "5. Diary the response date and any extension granted."] },
+          "sec7": { "b": ["Which specific items are under examination and what standard of proof applies?", "Should I authorise representation with Form 2848?", "Do I want to request an extension or a transfer to an office examination?", "What are my appeal rights if I disagree with the result?", "Are there related state or payroll exposures?"] }
+        }
+      },
+      "related": ["CP2000", "LTR3219C"]
+    }
+  ]
+}

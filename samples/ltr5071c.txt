@@ -1,0 +1,41 @@
+Internal Revenue Service
+Letter 5071C — Please provide tax return information so we can verify your
+identity
+
+Date: 03/28/2025
+Tax year: 2024
+
+Taxpayer: SAMPLE PERSON
+Social security number: 123-45-6789
+
+We need to verify your identity before we can finish processing your 2024 tax
+return. We received your return but we cannot process it until you complete
+identity verification. Your refund will not be issued until this is done.
+
+WHY YOU RECEIVED THIS LETTER
+Our filters identified characteristics that may indicate identity theft, so we
+must confirm that you — and not someone else — filed this return.
+
+WHAT YOU NEED TO DO — choose one
+- Verify online at irs.gov/identityverify. You will need your filed return, a
+  personal account in your name (such as a mobile phone or credit card), and a
+  government-issued photo identification such as a driver licence or passport.
+- Or call us at 1-800-738-1039 (not the general IRS line) Monday through
+  Friday, 7:00 a.m. to 7:00 p.m. local time.
+- If you cannot verify online or by phone, make an appointment at a Taxpayer
+  Assistance Center by calling 1-844-545-5640.
+
+Please complete verification within 30 days of this letter, by 04/27/2025.
+Until you verify, your return is not processed and your refund is delayed.
+
+DID YOU NOT FILE THIS RETURN?
+If you did not file the return described in this letter, tell us immediately.
+Complete Form 14039, Identity Theft Affidavit, and report the theft at
+identitytheft.gov. Consider placing a fraud alert or credit freeze with the
+three credit bureaus and request an Identity Protection PIN (IP PIN) at
+irs.gov/ippin.
+
+Never verify your identity through a link in an unexpected email or text
+message. Always go to irs.gov directly.
+
+Sample document — all data is fictional. Not an actual IRS letter.

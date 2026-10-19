@@ -1,0 +1,102 @@
+{
+  "updatedAt": "2026-10-17",
+  "currency": "USD",
+  "crypto": {
+    "primary": "BTC",
+    "networks": ["onchain", "lightning"],
+    "processor": "BTCPay Server (self-hosted) — the website never holds private keys",
+    "invoiceExpiryMinutes": 15,
+    "requiredConfirmations": 2,
+    "cardProcessor": "Stripe / hosted PCI-compliant gateway (optional)"
+  },
+  "groups": [
+    {
+      "id": "notices",
+      "title": "Notices & letters",
+      "items": [
+        {
+          "id": "notice-explain",
+          "name": "Notice explanation",
+          "i18nKey": "pricing.notice",
+          "descKey": "pricing.noticeDesc",
+          "usd": 19,
+          "unit": "pricing.perNotice",
+          "features": ["pricing.f1", "pricing.f2", "pricing.f3", "pricing.f4", "pricing.f5", "pricing.f6"],
+          "entitlement": "one notice decode",
+          "popular": true
+        },
+        {
+          "id": "draft-letter",
+          "name": "Draft response letter",
+          "i18nKey": "pricing.letter",
+          "descKey": "pricing.letterDesc",
+          "usd": 29,
+          "unit": "pricing.perLetter",
+          "features": ["pricing.f3"],
+          "addon": true,
+          "note": "Reviewed by a licensed professional. Never auto-sent to the IRS."
+        },
+        {
+          "id": "human-review",
+          "name": "Human review by CPA/EA",
+          "i18nKey": "pricing.review",
+          "descKey": "pricing.reviewDesc",
+          "usd": 49,
+          "unit": "pricing.perReview",
+          "features": ["pricing.f6"]
+        },
+        {
+          "id": "monthly-plan",
+          "name": "Monthly plan",
+          "i18nKey": "pricing.plan",
+          "descKey": "pricing.planDesc",
+          "usd": 39,
+          "unit": "pricing.perMonth",
+          "recurring": "month",
+          "features": ["pricing.f7", "pricing.f8", "pricing.f9", "pricing.f10"]
+        }
+      ]
+    },
+    {
+      "id": "returns",
+      "title": "Tax return preparation",
+      "titleKey": "pricing.returnsTitle",
+      "subtitleKey": "pricing.returnsSub",
+      "items": [
+        {
+          "id": "return-1040",
+          "name": "Form 1040 — wages & interest (W-2, 1099-INT/DIV)",
+          "usd": 189,
+          "unit": "per return",
+          "features": ["pricing.retInc1", "pricing.retInc2", "pricing.retInc3", "pricing.retInc4", "pricing.retInc5"]
+        },
+        {
+          "id": "return-1040-sc",
+          "name": "Form 1040 + Schedule C — self-employment / gig work",
+          "usd": 279,
+          "unit": "per return",
+          "features": ["pricing.retInc1", "pricing.retInc2", "pricing.retInc3", "pricing.retInc4", "pricing.retInc5"],
+          "note": "Includes Schedule SE and estimated-tax worksheet."
+        },
+        {
+          "id": "return-1040nr",
+          "name": "Form 1040-NR — non-resident alien",
+          "usd": 349,
+          "unit": "per return",
+          "features": ["pricing.retInc1", "pricing.retInc3", "pricing.retInc4", "pricing.retInc5"],
+          "note": "Includes treaty-position review and Form 8843 where required."
+        },
+        {
+          "id": "return-state",
+          "name": "State return add-on",
+          "usd": 49,
+          "unit": "per state",
+          "features": ["pricing.retInc3"]
+        }
+      ]
+    }
+  ],
+  "faq": [
+    "faq.q1", "faq.q2", "faq.q3", "faq.q4", "faq.q5", "faq.q6", "faq.q7", "faq.q8", "faq.q9"
+  ]
+}

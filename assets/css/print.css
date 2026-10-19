@@ -1,0 +1,70 @@
+/* ============================================================
+   GoTax.SI — print stylesheet
+   Used by "Print / Save as PDF" for explanations, receipts and
+   legal pages. Non-Latin scripts fall back to this path because
+   the bundled PDF writer only embeds base-14 Latin fonts.
+   ============================================================ */
+@page{
+  size:A4;
+  margin:16mm 14mm 18mm;
+}
+@page:first{margin-top:12mm}
+
+@media print{
+  :root{--bg:#fff;--surface:#fff;--ink:#000;--ink-2:#111;--muted:#333;--line:#bbb;--line-2:#ddd}
+
+  html,body{background:#fff!important;color:#000!important;font-size:11pt;line-height:1.5}
+  body{padding:0!important}
+
+  /* hide chrome, navigation and interactive controls */
+  .top-strip,.site-header,.drawer,.demo-banner,.cookie-bar,.toast-host,.modal,
+  .site-footer .f-lang,.disclaimer-bar .btn,.skip-link,
+  .btn,.icon-btn,.tabs,.toolbar,.search-box,.sim-box,.progress-steps,.step-nav,
+  #method-panel,#input-panel,#redaction-panel,#running-panel,#dropzone,.dropzone,
+  .dropzone,.decoder-rail .btn,.lang-panel,.menu-btn,[data-lang-switcher],[data-account-chip],
+  #auth-gate,#admin-tabs,#account-tabs,.faq-ico,noindex{display:none!important}
+
+  /* keep the essentials */
+  .wrap,.wrap-narrow{max-width:none;padding:0;margin:0}
+  main{display:block}
+  .card,.legal-doc,.receipt,.lang-pane,.extract-card,.banner{
+    break-inside:avoid;page-break-inside:avoid;box-shadow:none!important;border-color:#bbb!important;background:#fff!important}
+  .section,.section-tight,.cta-band{padding:0;margin:0 0 8mm;background:none!important;border:0!important;color:#000!important}
+  .cta-band{display:none!important}
+
+  h1,h2,h3,h4{break-after:avoid;page-break-after:avoid;color:#000!important;font-family:Helvetica,Arial,sans-serif}
+  h1{font-size:19pt}h2{font-size:14pt}h3{font-size:12pt}h4{font-size:11pt}
+  p,li,td,th,dt,dd{font-size:10.5pt;color:#000!important}
+  a{color:#000!important;text-decoration:underline}
+  /* show the destination for the important links only */
+  .legal-doc a[href^="http"]::after,.receipt a[href^="http"]::after{content:" (" attr(href) ")";font-size:8.5pt;word-break:break-all}
+
+  /* bilingual panes stack, English first */
+  .bilingual{display:block}
+  .lang-pane{border:1px solid #bbb;margin-bottom:6mm}
+  .lang-pane>header{background:#f2f2f2!important;border-bottom:1px solid #bbb}
+  .lang-pane .body{padding:4mm}
+
+  table{width:100%;border-collapse:collapse}
+  th,td{border:1px solid #bbb;padding:1.6mm 2mm;text-align:start;vertical-align:top}
+  thead th{background:#f2f2f2!important}
+  thead{display:table-header-group}
+  tr{break-inside:avoid}
+
+  .pill,.stamp,.meter,.meter-label{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pill{border:1px solid #999;background:#fff!important}
+  .stamp{border:2px solid #000;color:#000!important}
+  .qr-box canvas,.qr-box img{width:42mm;height:42mm}
+  .addr-box{border:1px solid #999;word-break:break-all}
+  .mono,.ocr-preview{font-family:"Courier New",monospace}
+  .ocr-preview{background:#fff!important;color:#000!important;border:1px solid #bbb;max-height:none;overflow:visible}
+  .mask{background:#000!important;color:#000!important}
+
+  /* print header / footer */
+  .site-footer{border-top:1px solid #bbb;margin-top:8mm;padding-top:4mm;display:block}
+  .site-footer .footer-grid{display:block}
+  .site-footer .f-col{margin-bottom:4mm}
+  .footer-legal p{font-size:8.5pt}
+  .disclaimer-bar{border-top:1px solid #bbb;margin-top:6mm;padding-top:3mm;background:none!important}
+  .disc-text{font-size:9pt}
+}

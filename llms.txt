@@ -1,0 +1,38 @@
+# GoTax.SI
+
+> GoTax.SI explains IRS notices in plain language: upload a photo or PDF of an IRS letter and get a bilingual explanation of what it means, what the IRS is asking, when it is due and what you can do.
+
+GoTax.SI is not a law firm and is not affiliated with the IRS. Explanations are general information, not legal or tax advice. SSN/ITIN and bank account numbers are redacted before analysis, and uploaded files are auto-deleted after 90 days. Prices are fixed in USD, payable by Bitcoin (on-chain or Lightning) or by card/bank.
+
+## Main pages
+
+- [Home](https://www.gotax.si/): Overview of the IRS notice explanation service, how it works, pricing summary and FAQs.
+- [Notice Decoder](https://www.gotax.si/decoder.html): Upload a JPG, PNG or PDF of an IRS notice (max 15 MB) or paste the text to get a bilingual, plain-language explanation with deadlines, options and next steps.
+- [Pricing](https://www.gotax.si/pricing.html): Fixed prices in USD and Bitcoin, what each explanation includes, and payment methods.
+- [Tax return preparation](https://www.gotax.si/returns.html): Guided intake with OCR-prefilled forms; a licensed US CPA/EA reviews, signs and files the return.
+- [Contact & help](https://www.gotax.si/contact.html): Contact form and help centre. Do not send SSNs, bank details or full documents through this form.
+
+## IRS notice library
+
+- [Notice library](https://www.gotax.si/notices/): Common IRS notices explained in plain language.
+- [CP11](https://www.gotax.si/notices/cp11.html): CP11 notice explained in plain language.
+- [CP14](https://www.gotax.si/notices/cp14.html): CP14 balance-due notice explained — what it means and what to do.
+- [CP2000](https://www.gotax.si/notices/cp2000.html): CP2000 notice explained in plain language.
+- [CP501](https://www.gotax.si/notices/cp501.html): CP501 notice explained in plain language.
+- [CP504](https://www.gotax.si/notices/cp504.html): CP504 notice explained in plain language.
+- [LTR3219C](https://www.gotax.si/notices/ltr3219c.html): LTR3219C notice explained in plain language.
+- [LTR5071C](https://www.gotax.si/notices/ltr5071c.html): LTR5071C notice explained in plain language.
+- [LTR569C](https://www.gotax.si/notices/ltr569c.html): LTR569C notice explained in plain language.
+
+## Legal
+
+- [Legal](https://www.gotax.si/legal/): Legal documents index.
+- [Terms](https://www.gotax.si/legal/terms.html): Terms of service.
+- [Privacy](https://www.gotax.si/legal/privacy.html): Privacy policy.
+- [Refunds](https://www.gotax.si/legal/refunds.html): Refund policy.
+- [Retention](https://www.gotax.si/legal/retention.html): Data retention and deletion policy.
+- [Disclaimer](https://www.gotax.si/legal/disclaimer.html): Disclaimer.
+
+## Languages
+
+Every explanation is shown in English and the reader's chosen language, side by side. Supported languages (12): English, Spanish, Hindi, Bangla, Arabic, Swahili, German, Korean, Tagalog, French, Simplified Chinese and Traditional Chinese. Select a language with the `?lang=` query parameter, for example https://www.gotax.si/?lang=bn — codes: `hi`, `bn`, `ar`, `sw`, `es`, `de`, `ko`, `tl`, `fr`, `zh-CN`, `zh-TW` (English is the default). Translations are machine-assisted; the English version controls.

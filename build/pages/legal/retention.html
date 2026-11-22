@@ -1,0 +1,87 @@
+<!--@
+title: Data retention &amp; deletion | GoTax.SI
+description: Exactly how long GoTax.SI keeps your documents, OCR text, explanations, payment records and audit logs, how auto-deletion works, how to delete your data yourself, and what we keep for legal reasons.
+slug: legal-retention
+path: legal/retention.html
+-->
+<!-- @head -->
+<!-- @header -->
+
+<main id="main">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{BASE}}index.html" data-i18n="nav.home">Home</a><span aria-hidden="true">/</span>
+      <a href="{{BASE}}legal/index.html" data-i18n="footer.legalTitle">Legal</a><span aria-hidden="true">/</span>
+      <span aria-current="page" data-i18n="legal.retention">Data retention</span>
+    </nav>
+
+    <div class="legal-layout">
+      <!-- @legalnav -->
+
+      <article class="legal-doc card card-pad">
+        <h1 data-i18n="legal.retention">Data retention &amp; deletion</h1>
+        <p class="tiny muted" data-i18n="legal.updated">Last updated: [DATE — placeholder]</p>
+        <div class="banner banner-info"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15 0 18-2.6-3-2.6-15.4 0-18z"/></svg></span><div><p class="mb0" data-i18n="lang.mtNote">Translations are machine-assisted. The English version controls.</p></div></div>
+
+        <div class="banner banner-warn"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3l9-16z"/><path d="M12 10v4"/><path d="M12 17.2v.1"/></svg></span><div><p class="mb0"><strong>[PLACEHOLDER]</strong> — set each period below to match your actual configuration and the law that applies to you. The defaults shipped with this build are: documents 90 days, signed URLs 5 minutes, rate-limit counters 1 minute.</p></div></div>
+
+        <h2>1. Retention schedule</h2>
+        <table>
+          <thead><tr><th>Data</th><th>Default retention</th><th>Why</th><th>Deletable by you now?</th></tr></thead>
+          <tbody>
+            <tr><td>Uploaded files (JPG / PNG / PDF)</td><td><strong>[90 days — placeholder]</strong>, configurable per account (7–365)</td><td>Service delivery; re-download of your explanation</td><td>Yes</td></tr>
+            <tr><td>OCR text after redaction</td><td>Same as the file it came from</td><td>Re-running the explanation, human review</td><td>Yes</td></tr>
+            <tr><td>Extracted fields and bilingual explanations</td><td>Same as the file; kept while your account exists</td><td>Your dashboard history</td><td>Yes</td></tr>
+            <tr><td>Signed download URLs</td><td><strong>[5 minutes — placeholder]</strong></td><td>Limits exposure if a link leaks</td><td>n/a (auto)</td></tr>
+            <tr><td>Draft response letters</td><td><strong>[90 days — placeholder]</strong></td><td>You may need to revise and send it</td><td>Yes</td></tr>
+            <tr><td>Return intake answers and confirmed OCR values</td><td>Until the engagement closes, then <strong>[7 years — placeholder]</strong> if a return was filed</td><td>Preparer record-keeping obligations</td><td>Partly (see §4)</td></tr>
+            <tr><td>Invoices, receipts, refund records</td><td><strong>[7 years — placeholder]</strong></td><td>Tax and accounting law</td><td>No</td></tr>
+            <tr><td>Bitcoin transaction IDs / payment hashes</td><td>Same as the receipt</td><td>Proof of payment, reconciliation</td><td>No</td></tr>
+            <tr><td>Consent records (with timestamps)</td><td><strong>[7 years — placeholder]</strong></td><td>Proof of lawful processing</td><td>No</td></tr>
+            <tr><td>Audit log (file views, exports, deletions, admin actions)</td><td><strong>[12 months — placeholder]</strong>, then aggregated</td><td>Security investigations</td><td>No</td></tr>
+            <tr><td>Analytics (aggregated, no personal data)</td><td><strong>[24 months — placeholder]</strong></td><td>Service improvement</td><td>n/a</td></tr>
+            <tr><td>Failed sign-in attempts, rate-limit counters</td><td><strong>[1 minute to 30 days — placeholder]</strong></td><td>Abuse prevention</td><td>n/a (auto)</td></tr>
+            <tr><td>Support messages</td><td><strong>[24 months — placeholder]</strong></td><td>Support continuity</td><td>Yes, on request</td></tr>
+          </tbody>
+        </table>
+
+        <h2>2. How auto-deletion works</h2>
+        <p>Every stored file is written with a <code>deleteAt</code> timestamp derived from the retention setting in force at upload time. A scheduled job deletes expired files and their OCR output, then records an entry in the audit log. Object storage also has a lifecycle rule as a second line of defence, and backups age out on their own cycle — <strong>[backup cycle, e.g. 30 days — placeholder]</strong>. Deletion from backups is complete no later than <strong>[35 days — placeholder]</strong> after the primary deletion.</p>
+
+        <h2>3. Deleting your data yourself</h2>
+        <ul>
+          <li><strong>One file:</strong> dashboard → Documents → delete. Immediate.</li>
+          <li><strong>One explanation:</strong> dashboard → Explanations → delete. Immediate.</li>
+          <li><strong>Everything:</strong> dashboard → Data &amp; privacy → “Delete all my data”. You type DELETE to confirm. This removes documents, OCR text, explanations and audit entries tied to your account, and signs you out. Payment records and consents are retained as required by law.</li>
+          <li><strong>Shorten your window:</strong> dashboard → Data &amp; privacy → set retention to 7, 30, 60, 90, 180 or 365 days.</li>
+        </ul>
+
+        <h2>4. Data we must keep</h2>
+        <p>If a licensed preparer filed a return for you, tax record-keeping rules require the return, the supporting documents and the signed consents to be kept for the statutory period. We will tell you exactly what is retained and why when you ask, and we will keep only that.</p>
+
+        <h2>5. Requests by email</h2>
+        <p>Email <a href="mailto:privacy@gotax.si">privacy@gotax.si</a> with the subject “deletion request”. We verify your identity by the email address on the account, then act within <strong>[30 days — placeholder]</strong>. You receive a confirmation with the deletion reference.</p>
+
+        <h2>6. What is never stored</h2>
+        <ul>
+          <li>SSNs, ITINs and bank account numbers in logs — they are masked before processing and only masked values are stored.</li>
+          <li>Full document contents in logs or analytics events.</li>
+          <li>Card numbers anywhere — cards are tokenised by the payment provider.</li>
+          <li>Bitcoin private keys — payments are handled by the processor.</li>
+        </ul>
+
+        <div class="banner banner-info mt6"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8.2v.1"/></svg></span><div><p class="mb0">Related: <a href="{{BASE}}legal/privacy.html" data-i18n="legal.privacy">privacy policy</a> · <a href="{{BASE}}legal/terms.html" data-i18n="legal.terms">terms of service</a> · <a href="{{BASE}}legal/refunds.html" data-i18n="legal.refunds">refund policy</a></p></div></div>
+      </article>
+    </div>
+  </div>
+</main>
+
+<div class="disclaimer-bar">
+  <div class="wrap">
+    <p class="disc-text"><strong data-i18n="legal.notAdvice">Not legal or tax advice.</strong>
+      <span data-i18n="legal.disclaimer">GoTax.SI provides AI-assisted explanations and document preparation support. It is not a law firm or a government agency and is not affiliated with the IRS. Information is general and not legal or tax advice.</span></p>
+    <p class="disc-text"><span data-i18n="legal.reviewedBy">Prepared returns are reviewed and signed by a licensed US CPA or EA partner before filing.</span></p>
+  </div>
+</div>
+
+<!-- @footer -->

@@ -1,0 +1,74 @@
+<!--@
+title: IRS notice library — CP2000, CP14, CP501, CP504, LTR3219C, LTR5071C explained | GoTax.SI
+description: Plain-language guides to common IRS notices: what the notice is, what the IRS is asking, the deadline and consequences, your options, the documents you may need, next steps and questions for a professional. Available in 12 languages.
+slug: notices
+scripts: assets/js/notices.js
+jsonld: collection
+path: notices/index.html
+-->
+<!-- @head -->
+<!-- @header -->
+
+<main id="main">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{BASE}}index.html" data-i18n="nav.home">Home</a><span aria-hidden="true">/</span>
+      <span aria-current="page" data-i18n="nav.notices">Notice library</span>
+    </nav>
+
+    <header class="page-head">
+      <p class="eyebrow" data-i18n="notices.title">Notice library</p>
+      <h1 data-i18n="notices.sub">Common IRS notices, explained in plain language</h1>
+      <p class="lead" data-i18n="notices.explainedSub">Every guide covers the same seven questions: what the notice is, what the IRS is asking, the deadline and what happens if you ignore it, your options, the documents you may need, recommended next steps, and the questions to ask a tax professional.</p>
+    </header>
+
+    <div class="toolbar mb4">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L21 21"/></svg>
+        <input class="input" type="search" id="notice-search" data-i18n-attr="placeholder:notices.search" aria-label="Search notices">
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-sm btn-outline chip-filter" data-risk="all" data-i18n="common.all">All</button>
+        <button class="btn btn-sm btn-ghost chip-filter" data-risk="high" data-i18n="notices.riskHigh">High risk</button>
+        <button class="btn btn-sm btn-ghost chip-filter" data-risk="medium" data-i18n="notices.riskMed">Medium</button>
+        <button class="btn btn-sm btn-ghost chip-filter" data-risk="low" data-i18n="notices.riskLow">Low</button>
+      </div>
+    </div>
+
+    <div class="notice-list" id="notice-all"></div>
+    <p class="muted small" id="notice-none" hidden data-i18n="common.notFoundField">Nothing found.</p>
+
+    <section class="card card-pad mt6">
+      <h2 class="mt0" data-i18n="notices.otherLangs">Read this in your language</h2>
+      <p class="small muted" data-i18n="lang.showBoth">Every explanation is shown in English and your language, side by side.</p>
+      <div data-lang-switcher></div>
+      <p class="tiny muted mt2" data-i18n="lang.mtNote">Translations are machine-assisted. The English version controls.</p>
+    </section>
+
+    <section class="cta-band mt6">
+      <div class="wrap cta-in">
+        <h2 data-i18n="notices.decodeYours">Decode your notice</h2>
+        <p class="lead" data-i18n="hero.sub">Upload a photo or PDF of the letter the IRS sent you.</p>
+        <div class="btn-row center-both">
+          <a class="btn btn-mint btn-lg" href="{{BASE}}decoder.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8V5h3M17 5h3v3M20 16v3h-3M7 19H4v-3"/><path d="M4 12h16"/></svg><span data-i18n="cta.startFree">Decode my notice free</span></a>
+          <a class="btn btn-ghost btn-lg on-dark" href="{{BASE}}pricing.html"><span data-i18n="cta.seePricing">See pricing</span></a>
+        </div>
+      </div>
+    </section>
+
+    <div class="banner banner-info mt6">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8.2v.1"/></svg></span>
+      <div><p class="mb0"><strong data-i18n="legal.notAdvice">Not legal or tax advice.</strong> <span data-i18n="legal.disclaimer">GoTax.SI provides AI-assisted explanations and document preparation support. It is not a law firm or a government agency and is not affiliated with the IRS. Information is general and not legal or tax advice.</span></p></div>
+    </div>
+  </div>
+</main>
+
+<div class="disclaimer-bar">
+  <div class="wrap">
+    <p class="disc-text"><strong data-i18n="legal.notAdvice">Not legal or tax advice.</strong>
+      <span data-i18n="legal.disclaimer">GoTax.SI provides AI-assisted explanations and document preparation support. It is not a law firm or a government agency and is not affiliated with the IRS. Information is general and not legal or tax advice.</span></p>
+    <p class="disc-text"><span data-i18n="legal.reviewedBy">Prepared returns are reviewed and signed by a licensed US CPA or EA partner before filing.</span></p>
+  </div>
+</div>
+
+<!-- @footer -->

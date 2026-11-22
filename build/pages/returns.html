@@ -1,0 +1,98 @@
+<!--@
+title: Tax return preparation — guided intake, OCR prefill, licensed CPA/EA signs | GoTax.SI
+description: Prepare your US tax return with a guided, resumable intake: filing status, W-2 and 1099 income, deductions, dependents, state. OCR prefills every form value and you confirm each one. A licensed CPA/EA reviews, signs and files.
+slug: returns
+scripts: assets/js/qrcode.js,assets/js/pdf.js,assets/js/extract.js,assets/js/returns.js
+jsonld: service
+path: returns.html
+-->
+<!-- @head -->
+<!-- @header -->
+
+<main id="main">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html" data-i18n="nav.home">Home</a><span aria-hidden="true">/</span>
+      <span aria-current="page" data-i18n="nav.returns">Return prep</span>
+    </nav>
+
+    <header class="page-head row-between wrap-head">
+      <div>
+        <p class="eyebrow" data-i18n="returns.title">Tax return preparation</p>
+        <h1 data-i18n="returns.sub">Answer a few questions, upload your forms, and a licensed preparer does the rest.</h1>
+        <p class="lead" data-i18n="returns.packageNote">Your draft package goes to a licensed CPA/EA who reviews, signs and files it.</p>
+      </div>
+      <div class="head-tools">
+        <span class="pill pill-muted" id="autosave" aria-live="polite"></span>
+        <button class="btn btn-sm btn-ghost" id="intake-restart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M9 7V5h6v2"/><path d="M6 7l1 13h10l1-13"/></svg><span data-i18n="cta.start">Start over</span></button>
+      </div>
+    </header>
+
+    <div class="banner banner-info">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+      <div><p class="mb0"><strong data-i18n="cta.resume">Saved automatically.</strong> <span data-i18n="returns.resumeNote">Your answers are stored in this browser, so you can close the page and come back. Nothing is sent to a preparer until you submit and give your consents.</span></p></div>
+    </div>
+
+    <div class="decoder-layout rail-right" id="intake">
+      <div class="decoder-main">
+        <nav class="progress-steps" aria-label="Progress">
+          <ol id="intake-steps"></ol>
+          <p class="tiny muted mt2" id="intake-progress" aria-live="polite"></p>
+        </nav>
+
+        <section class="card card-pad mt4" id="step-body" aria-live="polite"></section>
+
+        <div class="btn-row mt6 step-nav">
+          <button class="btn btn-outline" id="step-back"><span data-i18n="cta.back">Back</span></button>
+          <button class="btn btn-primary" id="step-next"><span data-i18n="cta.next">Next</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <button class="btn btn-mint" id="step-submit" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="returns.submitPackage">Submit to licensed preparer</span></button>
+        </div>
+
+        <div class="banner banner-warn mt6">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8.2v.1"/></svg></span>
+          <div><p class="mb0"><strong data-i18n="returns.confirmValues">Confirm every OCR value.</strong> <span data-i18n="returns.ocrNote">OCR prefills your W-2 and 1099 values — you must confirm every single one. We never guess a number: unconfirmed values block submission.</span></p></div>
+        </div>
+      </div>
+
+      <aside class="decoder-rail pane-sticky">
+        <div class="card card-pad">
+          <h2 class="mt0 h-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg> <span data-i18n="pricing.returnsTitle">Return prices</span></h2>
+          <ul class="price-mini" id="returns-prices">
+            <li><span data-i18n="pricing.retInc1">Form 1040 (single / joint, W-2 + interest)</span><strong>$189</strong></li>
+            <li><span data-i18n="pricing.retInc3">1040 + Schedule C (self-employment)</span><strong>$279</strong></li>
+            <li><span data-i18n="pricing.retInc4">1040-NR (non-resident alien)</span><strong>$349</strong></li>
+            <li><span data-i18n="pricing.retInc5">State return (add-on)</span><strong>$49</strong></li>
+          </ul>
+          <p class="tiny muted" data-i18n="pricing.rateNote">Bitcoin amounts are calculated at checkout from the processor's live rate and locked for 15 minutes.</p>
+          <a class="btn btn-outline btn-sm btn-block mt2" href="pricing.html#returns"><span data-i18n="cta.seePricing">See pricing</span></a>
+        </div>
+
+        <div class="card card-pad mt4">
+          <h2 class="mt0 h-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.9 7.9-7 9-4.1-1.1-7-4.8-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg> <span data-i18n="returns.consentTitle">Consents we collect</span></h2>
+          <ul class="tick-list small">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="returns.consent1">Consent to e-file and to use an electronic signature</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="returns.consent2">Consent to disclose and use your tax return information</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="returns.consent3">Acknowledgement that a licensed preparer reviews and signs the return</span></li>
+          </ul>
+          <p class="tiny muted" data-i18n="account.consentRecord">Your consent is recorded with a timestamp.</p>
+        </div>
+
+        <div class="card card-pad mt4">
+          <h2 class="mt0 h-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.4-3.4 4-5 7-5s5.6 1.6 7 5"/></svg> <span data-i18n="returns.preparer">Your preparer</span></h2>
+          <p class="small muted" data-i18n="returns.preparerUnassigned">Not assigned yet — a licensed CPA or EA is assigned after you submit, and their name and PTIN appear here and on your dashboard.</p>
+          <p class="tiny muted" data-i18n="legal.reviewedBy">Prepared returns are reviewed and signed by a licensed US CPA or EA partner before filing.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<div class="disclaimer-bar">
+  <div class="wrap">
+    <p class="disc-text"><strong data-i18n="legal.notAdvice">Not legal or tax advice.</strong>
+      <span data-i18n="legal.disclaimer">GoTax.SI provides AI-assisted explanations and document preparation support. It is not a law firm or a government agency and is not affiliated with the IRS. Information is general and not legal or tax advice.</span></p>
+    <p class="disc-text"><span data-i18n="legal.reviewedBy">Prepared returns are reviewed and signed by a licensed US CPA or EA partner before filing.</span></p>
+  </div>
+</div>
+
+<!-- @footer -->

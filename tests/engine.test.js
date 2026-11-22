@@ -100,8 +100,8 @@ const samples = sandbox.NOTICE_SAMPLES;
 Decode.setCatalog(notices);   /* the page scripts do this after fetching data/notices.json */
 
 console.log('\n== sample corpus ==');
-ok('samples.js generated with 11 entries', Object.keys(samples).length === 11, 'got ' + Object.keys(samples).length);
-['CP2000', 'CP14', 'CP11', 'CP501', 'CP504', 'LTR3219C', 'LTR5071C', 'LTR569C', 'W2', '1099-NEC', '1099-K']
+ok('samples.js generated with 13 entries', Object.keys(samples).length === 13, 'got ' + Object.keys(samples).length);
+['CP2000', 'CP14', 'CP11', 'CP501', 'CP504', 'LTR3219C', 'LTR5071C', 'LTR569C', 'CP12', 'CP503', 'W2', '1099-NEC', '1099-K']
   .forEach(k => ok('sample present: ' + k, !!samples[k] && samples[k].text.length > 200));
 ok('every sample has label/pages/ocrConfidence',
   Object.values(samples).every(s => s.label && s.pages >= 1 && s.ocrConfidence > 0 && s.ocrConfidence <= 1));
@@ -197,6 +197,8 @@ const expect = {
   'LTR3219C': { code: 'LTR3219C', year: '2024' },
   'LTR5071C': { code: 'LTR5071C', year: '2024' },
   'LTR569C': { code: 'LTR569C', year: '2023' },
+  'CP12': { code: 'CP12', year: '2024' },
+  'CP503': { code: 'CP503', year: '2024' },
 };
 for (const [key, want] of Object.entries(expect)) {
   const clean = Decode.redact(samples[key].text).clean;

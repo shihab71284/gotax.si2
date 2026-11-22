@@ -1,0 +1,103 @@
+<!--@
+title: Privacy policy | GoTax.SI
+description: How GoTax.SI collects, uses, redacts, stores and deletes your tax data. Encryption in transit and at rest, private storage with short-lived signed URLs, no SSNs in logs, role-based access, audit logging and your rights.
+slug: legal-privacy
+path: legal/privacy.html
+-->
+<!-- @head -->
+<!-- @header -->
+
+<main id="main">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{BASE}}index.html" data-i18n="nav.home">Home</a><span aria-hidden="true">/</span>
+      <a href="{{BASE}}legal/index.html" data-i18n="footer.legalTitle">Legal</a><span aria-hidden="true">/</span>
+      <span aria-current="page" data-i18n="legal.privacy">Privacy policy</span>
+    </nav>
+
+    <div class="legal-layout">
+      <!-- @legalnav -->
+
+      <article class="legal-doc card card-pad">
+        <h1 data-i18n="legal.privacy">Privacy policy</h1>
+        <p class="tiny muted" data-i18n="legal.updated">Last updated: [DATE — placeholder]</p>
+        <div class="banner banner-info"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 2.6 15 0 18-2.6-3-2.6-15.4 0-18z"/></svg></span><div><p class="mb0" data-i18n="lang.mtNote">Translations are machine-assisted. The English version controls.</p></div></div>
+
+        <h2>1. Who we are</h2>
+        <p>GoTax.SI is operated by <strong>[COMPANY LEGAL NAME — placeholder]</strong>, <strong>[REGISTERED ADDRESS — placeholder]</strong>, registration <strong>[VAT / REGISTRATION NUMBER — placeholder]</strong> (“we”, “us”). Contact: <a href="mailto:privacy@gotax.si">privacy@gotax.si</a>. We provide AI-assisted explanations of IRS notices and tax return preparation support. We are not a law firm, not a government agency and not affiliated with the IRS. Prepared returns are reviewed and signed by a licensed US CPA or EA partner.</p>
+
+        <h2>2. What we collect</h2>
+        <ul>
+          <li><strong>Account data:</strong> name, email address, hashed password, language preference, sign-in and 2FA status.</li>
+          <li><strong>Documents you upload:</strong> the file itself, its name, size, page count, detected type, malware-scan result and the OCR text after redaction.</li>
+          <li><strong>Extracted fields:</strong> notice code, tax year, notice date, amounts, deadlines and requested actions, each stored with the sentence it came from and a confidence score.</li>
+          <li><strong>Explanations we generate:</strong> the bilingual explanation, your language and the confidence breakdown.</li>
+          <li><strong>Payments:</strong> invoice ID, USD amount, BTC amount, exchange rate used, payment method, transaction ID or Lightning payment hash, confirmation count, receipt number and timestamps. We do not store card numbers — cards are handled by a hosted PCI-compliant provider.</li>
+          <li><strong>Return intake answers:</strong> filing status, income types, deduction flags, dependent first names/relationships/dates of birth, state, and the OCR values you confirmed.</li>
+          <li><strong>Consents:</strong> each consent you give, with a timestamp and policy version.</li>
+          <li><strong>Technical data:</strong> IP address (truncated for analytics), user agent, pages viewed, rate-limit counters and audit log entries.</li>
+        </ul>
+
+        <h2>3. What we never do</h2>
+        <ul>
+          <li>We never write SSNs, ITINs, EINs, bank account numbers or full document contents to our logs.</li>
+          <li>We never sell your data or use it for advertising.</li>
+          <li>We never send anything to the IRS on your behalf. Draft response letters are given to you; you decide what to do with them.</li>
+          <li>We never hold Bitcoin private keys on this website. Payments are processed by a self-hosted BTCPay Server instance or a hosted gateway.</li>
+        </ul>
+
+        <h2>4. Redaction before analysis</h2>
+        <p>When you upload a notice we run OCR, then automatically detect and mask SSNs, ITINs, bank account and routing numbers, long account numbers and EINs. The last four digits may remain visible so you can verify the match. You review and confirm the redaction <em>before</em> any AI processing starts, and you can correct the OCR text yourself. Redaction decisions are recorded (which categories were found and how many) without storing the original values.</p>
+
+        <h2>5. Why we process your data (legal bases)</h2>
+        <ul>
+          <li><strong>Contract:</strong> to decode your notice, prepare your return, take payment and issue receipts.</li>
+          <li><strong>Consent:</strong> to process an uploaded document and to store it for the retention period. Consent is recorded with a timestamp and can be withdrawn at any time by deleting the file or your account.</li>
+          <li><strong>Legitimate interests:</strong> security, fraud prevention, abuse rate limiting and service improvement.</li>
+          <li><strong>Legal obligation:</strong> tax, accounting and anti-money-laundering record keeping for payment records.</li>
+        </ul>
+
+        <h2>6. Who we share data with</h2>
+        <p>Only with the parties needed to deliver the service: our licensed CPA/EA review partner (for the documents and intake you submit for review or preparation), our hosting and object-storage provider, our OCR and LLM providers (processed on redacted text only, under data-processing agreements that prohibit training on your data), our payment processor, and our transactional email provider. Where a provider is outside the EEA/UK we rely on standard contractual clauses or an adequacy decision. We disclose data to authorities only where we are legally compelled to, and we tell you unless prohibited.</p>
+
+        <h2>7. Security</h2>
+        <ul>
+          <li>HTTPS everywhere (TLS 1.2+), HSTS, encryption at rest.</li>
+          <li>Private object storage; files are only reachable through short-lived signed URLs that expire in minutes.</li>
+          <li>Role-based access control: customer, licensed reviewer, administrator. Reviewers see only what is queued for them.</li>
+          <li>Optional 2FA (TOTP) and email verification.</li>
+          <li>File-type validation with magic-byte sniffing, size limits, malware scanning on every upload, and rate limiting on analysis and contact endpoints.</li>
+          <li>An audit log of file views, status changes, exports, deletions and administrative actions.</li>
+          <li>Sensitive numbers masked in the UI; secrets held in environment variables, never in the repository.</li>
+        </ul>
+
+        <h2>8. Retention</h2>
+        <p>Uploaded documents and OCR output are deleted automatically after <strong>[RETENTION PERIOD — default 90 days]</strong>, or sooner if you delete them. You can change your personal retention window in your dashboard and you can delete everything at any time. Payment and receipt records are kept for the period required by law — see <a href="{{BASE}}legal/retention.html" data-i18n="legal.retention">data retention</a>.</p>
+
+        <h2>9. Your rights</h2>
+        <p>Depending on where you live you may have the right to access, correct, export, restrict, object to or delete your personal data, and to withdraw consent. You can exercise most of these yourself in your dashboard (export as JSON, delete a file, delete everything). For anything else email <a href="mailto:privacy@gotax.si">privacy@gotax.si</a>; we respond within 30 days. You may also complain to your local data protection authority.</p>
+
+        <h2>10. Children</h2>
+        <p>The service is not directed at children under 16 and we do not knowingly collect their data.</p>
+
+        <h2>11. Analytics</h2>
+        <p>We use privacy-respecting analytics with no personal data: aggregated page views, language, notice codes and confidence bands. IP addresses are truncated. There are no third-party advertising cookies. See the cookie notice shown on your first visit.</p>
+
+        <h2>12. Changes</h2>
+        <p>If we change this policy we update the date above and, for material changes, notify you by email or in-product banner before they take effect.</p>
+
+        <div class="banner banner-warn mt6"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3l9-16z"/><path d="M12 10v4"/><path d="M12 17.2v.1"/></svg></span><div><p class="mb0"><strong data-i18n="legal.notAdvice">Not legal or tax advice.</strong> <span data-i18n="legal.disclaimer">GoTax.SI provides AI-assisted explanations and document preparation support. It is not a law firm or a government agency and is not affiliated with the IRS. Information is general and not legal or tax advice.</span></p></div></div>
+      </article>
+    </div>
+  </div>
+</main>
+
+<div class="disclaimer-bar">
+  <div class="wrap">
+    <p class="disc-text"><strong data-i18n="legal.notAdvice">Not legal or tax advice.</strong>
+      <span data-i18n="legal.disclaimer">GoTax.SI provides AI-assisted explanations and document preparation support. It is not a law firm or a government agency and is not affiliated with the IRS. Information is general and not legal or tax advice.</span></p>
+    <p class="disc-text"><span data-i18n="legal.reviewedBy">Prepared returns are reviewed and signed by a licensed US CPA or EA partner before filing.</span></p>
+  </div>
+</div>
+
+<!-- @footer -->

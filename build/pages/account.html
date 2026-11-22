@@ -1,0 +1,69 @@
+<!--@
+title: Your account — documents, explanations, receipts and privacy | GoTax.SI
+description: Your dashboard: uploaded documents with auto-delete dates, saved bilingual explanations, orders and receipts, review queue status, 2FA and email verification, your audit log, data export and one-click deletion of everything.
+slug: account
+scripts: assets/js/qrcode.js,assets/js/pdf.js,assets/js/extract.js,assets/js/account.js
+noindex: true
+path: account.html
+-->
+<!-- @head -->
+<!-- @header -->
+
+<main id="main">
+  <div class="wrap">
+
+    <!-- ---------- sign-in gate ---------- -->
+    <section class="card card-pad auth-card" id="auth-gate" hidden>
+      <div class="auth-head">
+        <span class="auth-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 118 0v3"/></svg></span>
+        <h1 class="mt2" data-i18n="account.title">Your account</h1>
+        <p class="muted" data-i18n="cta.signIn">Sign in to see your documents, explanations and receipts.</p>
+      </div>
+      <form id="signin-form" novalidate>
+        <div class="field"><label for="si-email" data-i18n="checkout.emailLabel">Email</label>
+          <input class="input" id="si-email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+        <div class="field"><label for="si-pass" data-i18n="account.password">Password</label>
+          <input class="input" id="si-pass" type="password" autocomplete="current-password" required minlength="6" placeholder="••••••••"></div>
+        <button class="btn btn-primary btn-block btn-lg" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.4-3.4 4-5 7-5s5.6 1.6 7 5"/></svg><span data-i18n="cta.signIn">Sign in</span></button>
+      </form>
+      <p class="tiny muted mt4" data-i18n="account.demoAccounts">Demo mode: any email and a password of 6+ characters signs you in as a customer. No data leaves your browser.</p>
+      <hr>
+      <h2 class="h-card" data-i18n="account.demoAccounts">Demo accounts</h2>
+      <div class="btn-row wrap">
+        <button class="btn btn-sm btn-outline" data-demo-role="customer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.4-3.4 4-5 7-5s5.6 1.6 7 5"/></svg> <span data-i18n="account.roleCustomer">Customer</span></button>
+        <button class="btn btn-sm btn-outline" data-demo-role="reviewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.9 7.9-7 9-4.1-1.1-7-4.8-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg> <span data-i18n="account.roleReviewer">Licensed reviewer</span></button>
+        <a class="btn btn-sm btn-ghost" href="admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 118 0v3"/></svg> <span data-i18n="nav.admin">Admin console</span></a>
+      </div>
+      <p class="tiny muted mt4" data-i18n="legal.disclaimer">GoTax.SI provides AI-assisted explanations and document preparation support. It is not a law firm or a government agency and is not affiliated with the IRS. Information is general and not legal or tax advice.</p>
+    </section>
+
+    <!-- ---------- dashboard ---------- -->
+    <div id="account-root" hidden>
+      <header class="page-head row-between wrap-head">
+        <div>
+          <p class="eyebrow" data-i18n="nav.account">Account</p>
+          <h1 data-i18n="account.welcome">Welcome back</h1>
+        </div>
+        <div class="head-tools">
+          <a class="btn btn-sm btn-outline" href="decoder.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8V5h3M17 5h3v3M20 16v3h-3M7 19H4v-3"/><path d="M4 12h16"/></svg><span data-i18n="cta.decode">Decode a notice</span></a>
+          <button class="btn btn-sm btn-ghost" id="signout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span data-i18n="cta.signOut">Sign out</span></button>
+        </div>
+      </header>
+
+      <div class="card card-pad acct-profile" id="account-profile"></div>
+
+      <nav class="tabs mt6" id="account-tabs" role="tablist" aria-label="Account sections"></nav>
+      <div class="tabpanel" id="account-body" role="tabpanel"></div>
+    </div>
+  </div>
+</main>
+
+<div class="disclaimer-bar">
+  <div class="wrap">
+    <p class="disc-text"><strong data-i18n="legal.notAdvice">Not legal or tax advice.</strong>
+      <span data-i18n="legal.disclaimer">GoTax.SI provides AI-assisted explanations and document preparation support. It is not a law firm or a government agency and is not affiliated with the IRS. Information is general and not legal or tax advice.</span></p>
+    <p class="disc-text"><span data-i18n="legal.reviewedBy">Prepared returns are reviewed and signed by a licensed US CPA or EA partner before filing.</span></p>
+  </div>
+</div>
+
+<!-- @footer -->

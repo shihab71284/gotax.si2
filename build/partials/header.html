@@ -1,0 +1,73 @@
+<div class="top-strip">
+  <div class="wrap top-strip-in">
+    <p class="ts-note"><span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.9 7.9-7 9-4.1-1.1-7-4.8-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><span data-i18n="lang.mtNote">Translations are machine-assisted. The English version controls.</span></p>
+    <div class="ts-right">
+      <span class="ts-lang" data-i18n="lang.showBoth">Every explanation is shown in English and your language, side by side.</span>
+      <a class="ts-link" href="{{BASE}}contact.html" data-i18n="contact.helpCenter">Help centre</a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header" id="site-header">
+  <div class="wrap header-in">
+    <a class="brand" href="{{BASE}}index.html" aria-label="GoTax.SI home">
+      <span class="gt-mark" aria-hidden="true">SI</span>
+      <span class="gt-word">GoTax<span class="si">.SI</span></span>
+      <span class="brand-sub" data-i18n="brand.siMeaning">Smart Intelligence for taxes</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main">
+      <a href="{{BASE}}index.html" data-i18n="nav.home" data-nav="home">Home</a>
+      <a href="{{BASE}}decoder.html" data-i18n="nav.decoder" data-nav="decoder">Notice Decoder</a>
+      <a href="{{BASE}}returns.html" data-i18n="nav.returns" data-nav="returns">Return prep</a>
+      <a href="{{BASE}}pricing.html" data-i18n="nav.pricing" data-nav="pricing">Pricing</a>
+      <a href="{{BASE}}notices/index.html" data-i18n="nav.notices" data-nav="notices">Notice library</a>
+      <a href="{{BASE}}contact.html" data-i18n="nav.contact" data-nav="contact">Contact</a>
+    </nav>
+
+    <div class="header-tools">
+      <div data-lang-switcher></div>
+      <div data-account-chip></div>
+      <a class="btn btn-primary btn-sm header-cta" href="{{BASE}}decoder.html">
+        <span data-i18n="cta.startFree">Decode a notice</span>
+      </a>
+      <button class="icon-btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="drawer" data-i18n-attr="aria-label:nav.openMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" data-open="false" aria-hidden="true">
+  <div class="drawer-scrim" data-close-drawer></div>
+  <div class="drawer-panel" role="dialog" aria-modal="true" data-i18n-attr="aria-label:nav.menu">
+    <div class="drawer-head">
+      <span class="brand"><span class="gt-mark" aria-hidden="true">SI</span><span class="gt-word">GoTax<span class="si">.SI</span></span></span>
+      <button class="icon-btn" data-close-drawer data-i18n-attr="aria-label:nav.closeMenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <nav class="drawer-nav" aria-label="Mobile">
+      <a href="{{BASE}}index.html" data-i18n="nav.home" data-close-drawer>Home</a>
+      <a href="{{BASE}}decoder.html" data-i18n="nav.decoder" data-close-drawer>Notice Decoder</a>
+      <a href="{{BASE}}returns.html" data-i18n="nav.returns" data-close-drawer>Return prep</a>
+      <a href="{{BASE}}pricing.html" data-i18n="nav.pricing" data-close-drawer>Pricing</a>
+      <a href="{{BASE}}notices/index.html" data-i18n="nav.notices" data-close-drawer>Notice library</a>
+      <a href="{{BASE}}checkout.html" data-i18n="nav.checkout" data-close-drawer>Checkout</a>
+      <a href="{{BASE}}account.html" data-i18n="nav.account" data-close-drawer>Account</a>
+      <a href="{{BASE}}admin.html" data-i18n="nav.admin" data-close-drawer>Admin</a>
+      <a href="{{BASE}}contact.html" data-i18n="nav.contact" data-close-drawer>Contact &amp; help</a>
+      <a href="{{BASE}}legal/index.html" data-i18n="nav.legal" data-close-drawer>Legal</a>
+    </nav>
+    <div class="drawer-foot">
+      <div data-lang-switcher></div>
+      <p class="tiny muted" data-i18n="lang.mtNote">Translations are machine-assisted. The English version controls.</p>
+    </div>
+  </div>
+</div>
+
+<div class="demo-banner" data-demo-banner hidden>
+  <div class="wrap demo-banner-in">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8.2v.1"/></svg></span>
+    <p><strong data-i18n="common.demoMode">Demo mode</strong> <span data-i18n="footer.analytics">No personal data is sent anywhere. Payments, OCR and AI results are simulated in your browser.</span></p>
+  </div>
+</div>
+

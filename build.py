@@ -120,6 +120,9 @@ def jsonld(kind: str, meta: dict) -> str:
         "email": "support@gotax.si",
         "knowsLanguage": LOCALES,
         "areaServed": "US",
+        "sameAs": [
+            "https://www.facebook.com/profile.php?id=61596630435997"
+        ],
     }
     if "organization" in kind:
         blocks.append({"@context": "https://schema.org", **org})

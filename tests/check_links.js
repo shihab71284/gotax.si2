@@ -35,7 +35,7 @@ function walk(dir, out = []) {
 const pages = walk(ROOT).sort();
 const rel = p => path.relative(ROOT, p).split(path.sep).join('/');
 const rels = pages.map(rel);
-ok('found the expected number of built pages', pages.length === 26, pages.length + ' → ' + rels.join(', '));
+ok('found the expected number of built pages', pages.length === 27, pages.length + ' → ' + rels.join(', '));
 
 const src = new Map();
 pages.forEach(p => src.set(rel(p), fs.readFileSync(p, 'utf8')));

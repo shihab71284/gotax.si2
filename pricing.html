@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-<link rel="manifest" href="/manifest.webmanifest">
+<link rel="manifest" href="manifest.webmanifest">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EWEL5GNQY6"></script>
 <script>
@@ -72,6 +72,85 @@
 <script src="assets/js/app.js" defer></script>
 <script src="assets/js/pricing.js" defer></script>
 <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is GoTax.SI a law firm or the IRS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. GoTax.SI is not a law firm, not a government agency, and not affiliated with the IRS. We provide AI-assisted explanations and document-preparation support. Prepared returns are reviewed and signed by a licensed US preparer (CPA/EA)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this legal or tax advice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Explanations are general information to help you understand a document. They are not legal or tax advice and do not create a professional-client relationship. For advice about your situation, talk to a licensed professional."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to my SSN and bank details?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An automatic redaction step masks SSN/ITIN and bank account numbers before any text reaches the AI model. You confirm the redaction first. We never log SSNs or full document contents, and sensitive numbers are masked in the interface."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do you keep my files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Uploaded documents are automatically deleted after a configurable retention period (default 90 days). You can delete any file, or your whole account and data, at any time from your dashboard."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you pay the IRS or file for me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We never auto-send anything to the IRS. Draft response letters are produced for your review. If you want a return prepared, a licensed CPA/EA partner reviews, signs and files it, and their PTIN is displayed once assigned."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which languages are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "English, Spanish, Hindi, Bangla, Arabic, Swahili, German, Korean, Tagalog, French, Simplified Chinese and Traditional Chinese. Every explanation is shown in English and your chosen language side by side; English is the authoritative text."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I pay? Do I need Bitcoin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Bitcoin (on-chain and Lightning) is our primary payment rail, but every price also has a card/bank option. BTC checkout shows the USD price, BTC amount, exchange rate, a 15-minute expiry timer, QR code, wallet address and live payment status."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if the AI cannot read my notice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If OCR or classification confidence is low, or the notice is high-risk (audit, levy, lien, fraud or identity theft), we show a banner telling you to talk to a licensed professional and offer human review. Any field we cannot find is shown as \"Not found\" — we never invent amounts or deadlines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are your refund terms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Refunds are handled per the published Refund Policy. Underpayments, overpayments and expired BTC invoices each have clear recovery instructions and a support path — contact support with your invoice number."
+      }
+    }
+  ]
+}
+</script>
 {
   "@context": "https://schema.org",
   "@type": "Product",

@@ -32,6 +32,7 @@ PARTIALS = os.path.join(ROOT, "build", "partials")
 SITE = "https://gotax.si"
 TODAY = date.today().isoformat()
 
+# Notice page generation from notices.json (sampleFile, sections) across 12 LOCALES with localised summary.
 LOCALES = ["en", "hi", "bn", "ar", "sw", "es", "de", "ko", "tl", "fr", "zh-CN", "zh-TW"]
 XDEFAULT = "en"
 

@@ -269,14 +269,14 @@
 
         <div class="action-strip">
           <button type="button" class="btn-copy" onclick="copyLetter()">Copy Letter to Clipboard</button>
-          <button type="button" class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+          <button type="button" class="btn-print" onclick="printLetter()">Print / Save as PDF</button>
         </div>
         <div id="copyAlert" class="alert-toast">&#10003; Letter copied to clipboard! Ready to paste or print.</div>
 
         <div class="cpa-review-box">
           <h3>Need a Licensed CPA or Enrolled Agent (EA) Review?</h3>
           <p>Complex audits, levy notices, or penalties over $2,500 benefit from professional representation. Our licensed CPA/EA partners can review, sign, and represent your case.</p>
-          <a href="pricing.html" class="btn btn-primary btn-sm" style="display:inline-block; text-decoration:none;">Explore CPA / EA Review Plans &rarr;</a>
+          <a href="pricing.html" class="btn btn-primary btn-sm" onclick="trackCpaClick()" style="display:inline-block; text-decoration:none;">Explore CPA / EA Review Plans &rarr;</a>
         </div>
       </div>
     </div>
@@ -400,11 +400,32 @@ Enclosures: As stated above`;
 
 function copyLetter() {
   const text = document.getElementById('letterOutput').textContent;
+  const noticeNum = document.getElementById('noticeNumber').value;
+  const taxYear = document.getElementById('taxYear').value;
+  if (typeof gtag === 'function') {
+    gtag('event', 'dispute_letter_copy', { notice: noticeNum, tax_year: taxYear });
+  }
   navigator.clipboard.writeText(text).then(() => {
     const alert = document.getElementById('copyAlert');
     alert.style.display = 'block';
     setTimeout(() => { alert.style.display = 'none'; }, 4000);
   });
+}
+
+function printLetter() {
+  const noticeNum = document.getElementById('noticeNumber').value;
+  const taxYear = document.getElementById('taxYear').value;
+  if (typeof gtag === 'function') {
+    gtag('event', 'dispute_letter_print', { notice: noticeNum, tax_year: taxYear });
+  }
+  window.print();
+}
+
+function trackCpaClick() {
+  const noticeNum = document.getElementById('noticeNumber').value;
+  if (typeof gtag === 'function') {
+    gtag('event', 'cpa_review_click', { notice: noticeNum });
+  }
 }
 
 // Initial render on load

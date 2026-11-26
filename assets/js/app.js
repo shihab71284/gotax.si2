@@ -597,6 +597,11 @@
     var events = Store.get('analytics', []);
     events.push({ e: name, p: props || {}, l: W.I18N.current, t: Date.now() });
     Store.set('analytics', events.slice(-500));
+    try {
+      if (typeof W.gtag === 'function') {
+        W.gtag('event', name.replace(/\./g, '_'), props || {});
+      }
+    } catch (e) { /* ignore */ }
   };
 
   /* ---------- sample data seeding ---------- */

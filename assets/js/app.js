@@ -701,6 +701,31 @@
     if (App.el('[data-demo-banner]')) {
       App.el('[data-demo-banner]').textContent = W.t('common.demoMode');
     }
+    /* cookie consent banner */
+    if (!Store.get('cookieConsent', null) && !App.el('#gt-cookie-banner')) {
+      var cb = document.createElement('div');
+      cb.id = 'gt-cookie-banner';
+      cb.setAttribute('role', 'dialog');
+      cb.setAttribute('aria-label', 'Cookie Consent');
+      cb.style.cssText = 'position:fixed;right:16px;bottom:84px;max-width:360px;z-index:9998;background:#0b3a5c;color:#fff;padding:14px 16px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,0.28);font-size:13px;line-height:1.45;';
+      cb.innerHTML = '<span>We use essential storage and privacy-first analytics (GA4) to improve IRS notice explanations. <a href="' + App.url('legal/cookies.html') + '" style="color:#3ddc97;text-decoration:underline;">Cookie Policy</a></span>' +
+        '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px;">' +
+        '<button type="button" id="gt-ck-ess" style="background:transparent;color:#cbd5e1;border:1px solid #64748b;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;">Essential Only</button>' +
+        '<button type="button" id="gt-ck-all" style="background:#3ddc97;color:#052e16;border:none;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;">Accept All</button>' +
+        '</div>';
+      document.body.appendChild(cb);
+      var saveCk = function (val) {
+        Store.set('cookieConsent', val);
+        if (typeof W.gtag === 'function') {
+          W.gtag('consent', 'update', {
+            analytics_storage: val === 'all' ? 'granted' : 'denied'
+          });
+        }
+        cb.remove();
+      };
+      cb.querySelector('#gt-ck-ess').addEventListener('click', function () { saveCk('essential'); });
+      cb.querySelector('#gt-ck-all').addEventListener('click', function () { saveCk('all'); });
+    }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
